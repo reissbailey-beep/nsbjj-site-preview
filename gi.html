@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<script src="sandbox-only.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Add your NSBJJ gi | New School BJJ Brixton</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b0b0c">
+<link rel="icon" href="img/nsbjj-logo-192.jpg">
+<link rel="preload" href="fonts/anton.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="checkout.css">
+<!-- LAUNCH: "Yes" calls POST /api/upsell, which charges £65 to the saved payment method of the £20 PaymentIntent's customer,
+     confirmed while the customer is on the page (3DS can appear here if the bank asks). Allow once per paid trial, within 30 minutes of the verified charge.
+     Fulfilment (per Reiss, 4 Oct): no size online; the gi is fitted in person and collected at the gym at the first class.
+     Send staff a task/notification "fit gi" with the member's name and first booking. -->
+<meta name="referrer" content="no-referrer">
+<script src="consent.js"></script>
+<script src="checkout-state.js"></script>
+</head>
+<body class="co">
+
+<header class="co-header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="New School BJJ Brixton home">
+      <img src="img/nsbjj-logo-192.jpg" alt="" width="42" height="42">
+      <span><b>New School BJJ</b><small>BRIXTON</small></span>
+    </a>
+    <span class="co-secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Secure checkout</span>
+  </div>
+</header>
+
+<main class="co-main">
+  <div class="wrap">
+    <ol class="steps" aria-label="Checkout steps"><li class="done">1 · Trial ✓</li><li class="on" aria-current="step">2 · Gi (optional)</li><li>3 · Welcome</li></ol>
+    <p class="paid-banner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Preview: choose your optional gi. No payment or booking has been made.</p>
+
+    <!-- HERO (v6): NSBJJ GI video at the top, muted autoplay + "Tap for sound".
+         Mobile: headline + subhead, video full-bleed 16:9, then the first "Yes". Desktop: copy + "Yes" left, video right. -->
+    <section class="gi-hero">
+      <div class="gi-copy-head">
+        <span class="eyebrow">Your NSBJJ premium gi</span>
+        <h1 class="display">Walk in on day one <span class="accent">looking like you belong.</span></h1>
+        <p class="lede">Your own NSBJJ gi, Brixton Team on the back, fitted on you at your first class.</p>
+      </div>
+      <!-- Video: "NSBJJ GI" (1:35), YouTube N249K9dTltg, unlisted on the Reiss Bailey channel. Muted autoplay (the only autoplay browsers allow);
+           "Tap for sound" unmutes and restarts from 0 via the IFrame API. Reiss mentions gis "upwards of £90" around 0:58; consistent with "normally £90+" on the page (Reiss, 4 Oct: premium gi bought later is £90+).
+           Poster (caption-free b-roll crop at 0:32) sits behind the iframe so there's never an empty box while YouTube loads.
+           Consent-gated (consent.js): autoplay only after Accept, otherwise click-to-play. -->
+      <div class="gi-vid" id="gi-vid">
+        <picture><source srcset="img/shop/gi-video-poster-broll-640.webp 640w, img/shop/gi-video-poster-broll-832.webp 832w" sizes="(min-width:1000px) 640px, 100vw" type="image/webp"><img src="img/shop/gi-video-poster-broll-832.jpg" alt="" width="832" height="468" fetchpriority="high"></picture>
+        <!-- CONSENT: the youtube-nocookie iframe is injected by the script below. After Accept: muted autoplay + "Tap for sound" (as before).
+             Before consent: poster + play button only; nothing from YouTube loads until the visitor taps play. -->
+        <button class="vid-play" type="button" aria-label="Play the video (1:35)" hidden>
+          <span class="vid-play-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="vid-play-lbl">Watch: why you'll want your own gi · 1:35</span>
+        </button>
+        <button class="sound-btn" type="button" aria-label="Play the video with sound, from the start" hidden>
+          <span class="sound-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M16 9l5 6M21 9l-5 6"/></svg>Tap for sound</span>
+        </button>
+      </div>
+      <div class="cta-block cta-top">
+        <p class="price-line">£65 today. £90+ if you buy it later.</p>
+        <a class="btn btn-primary btn-yes" data-carry href="welcome.html?gi=1">Yes, add my gi (£65) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <p class="charge-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Charged to the card you just used. No need to enter your details again.</p>
+        <a class="btn-no" data-carry href="welcome.html">No thanks</a>
+      </div>
+    </section>
+
+    <!-- LEAD IMAGE from Reiss (4 Oct): white, blue and black NSBJJ gis, cropped at the chin. Source img/shop/original/standard_gis_white_blue_black.png (1598×655).
+         Caption softened (v6): stock per colour is uncertain. -->
+    <figure class="gi-lead">
+      <picture><source srcset="img/shop/gis-white-blue-black-800.webp 800w, img/shop/gis-white-blue-black-1200.webp 1200w, img/shop/gis-white-blue-black-1598.webp 1598w" sizes="(min-width:1240px) 1144px, 100vw" type="image/webp"><img src="img/shop/gis-white-blue-black-1200.jpg" alt="Three NSBJJ premium gis side by side, in white, blue and black, with NS/BJJ and Brixton prints, in front of the Brixton mural" width="1598" height="655" loading="lazy"></picture>
+      <figcaption>Available in white, blue and black. Fitted in person.</figcaption>
+    </figure>
+
+    <!-- DETAILS: shop photos (Batch #002 black/blue, 600px max), no faces in focus. -->
+    <section class="gi-details" aria-label="Gi details">
+        <figure><picture><source srcset="img/shop/black-gi-white-stitching-2-600.webp" type="image/webp"><img src="img/shop/black-gi-white-stitching-2-600.jpg" alt="Back of a black NSBJJ gi with the large New School BJJ Brixton Team patch" width="600" height="600" loading="lazy"></picture><figcaption>Team patch on the back</figcaption></figure>
+        <figure><picture><source srcset="img/shop/blue-gi-white-stitching-6-600.webp" type="image/webp"><img src="img/shop/blue-gi-white-stitching-6-600.jpg" alt="Shoulder of a blue NSBJJ gi with Brixton lettering and the sleeve patch" width="600" height="600" loading="lazy"></picture><figcaption>Brixton on the shoulder</figcaption></figure>
+        <figure><picture><source srcset="img/shop/blue-gi-white-stitching-4-600.webp" type="image/webp"><img src="img/shop/blue-gi-white-stitching-4-600.jpg" alt="NS/BJJ patch on the sleeve of a blue gi" width="600" height="600" loading="lazy"></picture><figcaption>NS/BJJ sleeve patch</figcaption></figure>
+        <figure><picture><source srcset="img/shop/blue-gi-white-stitching-5-600.webp" type="image/webp"><img src="img/shop/blue-gi-white-stitching-5-600.jpg" alt="Woven NSBJJ Brixton Team label on a blue gi" width="600" height="600" loading="lazy"></picture><figcaption>Woven team label</figcaption></figure>
+    </section>
+
+    <!-- BENEFITS (v7, emotional blocks; Reiss-approved draft, 4 Oct). Facts: loaner gi free for week one only, "LOAN" on the back, then £10 a class;
+         premium gi bought later is £90+; the lightweight gi (also £65) isn't competition-ready. -->
+    <section class="gi-sec">
+      <ul class="gi-benefits gi-blocks">
+        <li><span class="n">01</span><div><h3>Week two: the LOAN gi, or your own.</h3><p>LOAN across your back says new, not sure yet. Brixton Team says you're staying.</p></div></li>
+        <li><span class="n">02</span><div><h3>Built to compete, not just to train.</h3><p>Our competition-ready premium gi, not the lightweight one. If you ever step into a competition, it's already in your bag.</p></div></li>
+        <li><span class="n">03</span><div><h3>Fitted by us, not a size chart.</h3><p>We try gis on you at your first class until one fits right. No guessing your size online.</p></div></li>
+      </ul>
+    </section>
+
+    <!-- QUOTE: real 5★ Google review, Tyla Merven, 11 May 2025 (active member). Verbatim excerpt. See gbp/reviews-all.md #10. -->
+    <figure class="gi-quote">
+      <blockquote>“…you feel like you're part of a community here, family vibes.”</blockquote>
+      <figcaption><span class="stars" aria-label="5 out of 5 stars">★★★★★</span> Tyla, Google review</figcaption>
+    </figure>
+
+    <!-- HOW IT WORKS -->
+    <section class="gi-sec">
+      <h2 class="display gi-h2">How the fitting works</h2>
+      <ol class="how" aria-label="How it works">
+        <li><b>Add your gi now</b><span>One tap, same card.</span></li>
+        <li><b>We fit you at your first class</b><span>We try gis on you and find your size.</span></li>
+        <li><b>You walk out with it</b><span>Yours, ready for your next class.</span></li>
+      </ol>
+    </section>
+
+    <!-- FAQ -->
+    <section class="gi-sec gi-faq-sec">
+      <h2 class="display gi-h2">Quick questions</h2>
+      <div class="faq gi-faq">
+        <details open><summary>Do I need a gi?</summary><p>For most classes, yes. Most of our timetable is gi; only a few classes are no-gi. You get a free loaner gi for your first week. After that, a loaner is £10 a class.</p></details>
+        <details><summary>What if I'm between sizes?</summary><p>That's why we fit you in person. We try different gis on you at your first class and go with the best fit.</p></details>
+        <details><summary>Can I buy a gi later?</summary><p>Yes, but bought later this gi is £90+. Today it's £65: one tap, same card, fitted at your first class.</p></details>
+        <details><summary>Is it the same as the lightweight gi?</summary><p>No. The lightweight gi isn't the same quality, and you can't compete in it. This is our premium gi: competition-ready, with the Brixton Team patch.</p></details>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="gi-final">
+      <h2 class="display">Turn up as a member, <span class="accent">not a visitor.</span></h2>
+      <p>One tap. Same card. Fitted at your first class.</p>
+      <div class="cta-block">
+          <p class="price-line">£65 today. £90+ if you buy it later.</p>
+        <a class="btn btn-primary btn-yes" data-carry href="welcome.html?gi=1">Yes, add my gi (£65) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <p class="charge-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Charged to the card you just used. No need to enter your details again.</p>
+          <a class="btn-no" data-carry href="welcome.html">No thanks</a>
+        </div>
+    </section>
+    <p class="mock-note">Design mockup, October 2026. Not live: no payment is taken.</p>
+  </div>
+</main>
+
+<footer class="co-foot"><div class="wrap"><span>New School BJJ Brixton · 130 Brixton Hill, London SW2 1RS</span><a href="tel:+447578284838">Questions? Call or WhatsApp 07578 284838</a><span class="co-legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><button type="button" data-cookie-settings>Cookie settings</button></span></div></footer>
+
+<script>
+// ONE-CLICK GI (live only). Stripe sends the visitor here after the £20 trial: gi.html?session_id=cs_...
+// "Yes" POSTs /api/upsell, which charges £65 off-session to the card saved at checkout (idempotent per session, so a double tap can't charge twice).
+// If the bank asks to confirm (SCA) or declines, the server returns a small Stripe Checkout for the gi and we send them there.
+// "No thanks" goes to welcome.html?session_id=... The local preview uses synthetic navigation only.
+(function(){
+  if(!(window.NSBJJ_TRACKING&&NSBJJ_TRACKING.CHECKOUT_LIVE))return;
+  var sid=new URLSearchParams(location.search).get('session_id');
+  var verified=false,busy=false,buttons=document.querySelectorAll('.btn-yes'),no=document.querySelectorAll('.btn-no');
+  var banner=document.querySelector('.paid-banner');
+  banner.setAttribute('role','status');banner.textContent='Checking your trial payment…';
+  function lock(){verified=false;buttons.forEach(function(b){b.setAttribute('aria-disabled','true');});}
+  lock();
+  function unverified(){lock();banner.textContent='Your trial payment is not verified. Check your receipt or contact the gym before paying again.';}
+  buttons.forEach(function(b){b.addEventListener('click',function(e){if(!verified||busy){e.preventDefault();e.stopImmediatePropagation();}},true);});
+  no.forEach(function(b){b.addEventListener('click',function(e){if(busy){e.preventDefault();e.stopImmediatePropagation();}},true);});
+  if(!window.NSBJJCheckout||!NSBJJCheckout.sessionId(sid)){unverified();return;}
+  var welcome='welcome.html?session_id='+encodeURIComponent(sid);
+  no.forEach(function(a){a.href=welcome;a.removeAttribute('data-carry');});
+  function check(){
+    lock();
+    return fetch('/api/session?id='+encodeURIComponent(sid),{headers:{Accept:'application/json'},cache:'no-store'})
+      .then(function(r){return r.ok?r.json():null;})
+      .then(function(d){
+        if(!NSBJJCheckout.paidSession(d,sid)){unverified();return;}
+        if(d.gi){location.href=welcome;return;}
+        if(d.gi_status!=='not_selected'&&d.gi_status!=='checkout'){
+          banner.textContent='Your trial payment is confirmed. Your gi payment still needs checking. View your receipt or contact the gym before paying again.';return;
+        }
+        if(d.gi_eligible===false&&d.gi_status==='not_selected'){banner.textContent='Your trial payment is confirmed. This online gi offer has ended. Please ask the gym about buying a gi.';return;}
+        verified=true;banner.textContent='Your trial payment is confirmed. One last thing before you go…';
+        buttons.forEach(function(b){b.removeAttribute('aria-disabled');});
+        if(window.nsbjjTrackPurchase)nsbjjTrackPurchase({value:d.trial.value,currency:'GBP',event_id:d.trial.event_id,transaction_id:d.trial.transaction_id});
+      }).catch(unverified);
+  }
+  check();
+  if(window.addEventListener)window.addEventListener('pageshow',function(e){if(e.persisted){busy=false;check();}});
+  buttons.forEach(function(btn){
+    btn.removeAttribute('data-carry');
+    btn.addEventListener('click',function(e){
+      e.preventDefault();if(!verified||busy)return;busy=true;
+      buttons.forEach(function(b){b.setAttribute('aria-disabled','true');});
+      no.forEach(function(b){b.setAttribute('aria-disabled','true');});
+      btn.textContent='Adding your gi…';
+      function uncertain(){
+        busy=false;lock();btn.textContent='Payment needs checking';
+        no.forEach(function(b){b.removeAttribute('aria-disabled');b.textContent='View your payment status';});
+        banner.textContent='We could not confirm your gi payment. Your bank may already have processed it. View your payment status or contact the gym before paying again.';
+      }
+      fetch('/api/upsell',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:sid})})
+        .then(function(r){return r.json().then(function(d){if(!r.ok)throw Error('Unconfirmed');return d;});})
+        .then(function(d){
+          if(d.status==='succeeded'){location.href=welcome;return;}
+          if(d.status==='checkout'&&NSBJJCheckout.stripeCheckoutUrl(d.url)){location.href=d.url;return;}
+          uncertain();
+        }).catch(uncertain);
+    });
+  });
+})();
+(function(){
+  var p=new URLSearchParams(location.search);
+  // Top video (youtube-nocookie). After cookie consent: muted autoplay, "Tap for sound" unmutes and restarts via the IFrame API.
+  // Without consent: poster + play button; tapping play loads the video with sound (nothing from YouTube loads before that).
+  var box=document.getElementById('gi-vid');
+  if(box){
+    var BASE='https://www.youtube-nocookie.com/embed/N249K9dTltg?playsinline=1&rel=0&modestbranding=1';
+    var TITLE="NSBJJ GI: Reiss on why you'll want your own gi (1:35)";
+    var soundBtn=box.querySelector('.sound-btn'),playBtn=box.querySelector('.vid-play'),player=null,ready=false,started=false;
+    // Offline preview: keep the video identifiable even when cookie consent was saved.
+    // The recovered gi film is hosted on YouTube, not bundled as a local MP4.
+    if(window.NSBJJ_PREVIEW){
+      playBtn.hidden=false;
+      playBtn.setAttribute('aria-label','About the gi video, 1 minute 35 seconds');
+      playBtn.querySelector('.vid-play-lbl').textContent='Gi film · 1:35 · YouTube playback unavailable in this local preview';
+      playBtn.addEventListener('click',function(){
+        playBtn.querySelector('.vid-play-lbl').textContent='This gi film is on YouTube. A local video file is needed for offline playback.';
+      });
+      return;
+    }
+    function addFrame(src){var f=document.createElement('iframe');f.id='gi-yt';f.src=src;f.title=TITLE;
+      f.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen';f.allowFullscreen=true;box.insertBefore(f,soundBtn);return f;}
+    function autoplayMuted(){
+      if(window.NSBJJ_PREVIEW)return; // Keep the poster; never contact YouTube in the offline preview.
+      if(started)return;started=true;playBtn.hidden=true;soundBtn.hidden=false;
+      addFrame(BASE+'&autoplay=1&mute=1&enablejsapi=1&loop=1&playlist=N249K9dTltg');
+      window.onYouTubeIframeAPIReady=function(){player=new YT.Player('gi-yt',{events:{onReady:function(){ready=true;}}});};
+      var t=document.createElement('script');t.src='https://www.youtube.com/iframe_api';t.async=true;document.head.appendChild(t);
+    }
+    soundBtn.addEventListener('click',function(){
+      if(ready&&player&&player.unMute){player.unMute();player.setVolume(100);player.seekTo(0,true);player.playVideo();}
+      else{var f=document.getElementById('gi-yt');f.src=f.src.replace('mute=1','mute=0')+'&start=0';}
+      soundBtn.hidden=true;box.classList.add('has-sound');
+    });
+    playBtn.addEventListener('click',function(){
+      if(started)return;started=true;playBtn.hidden=true;box.classList.add('has-sound');
+      addFrame(BASE+'&autoplay=1');
+    });
+    if(window.nsbjjConsent&&nsbjjConsent.accepted())autoplayMuted();
+    else{playBtn.hidden=false;if(window.nsbjjConsent)nsbjjConsent.onAccept(autoplayMuted);}
+  }
+})();
+</script>
+</body>
+</html>

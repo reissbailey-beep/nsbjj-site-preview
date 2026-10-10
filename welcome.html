@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<script src="sandbox-only.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>You're in | New School BJJ Brixton</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b0b0c">
+<link rel="icon" href="img/nsbjj-logo-192.jpg">
+<link rel="preload" href="fonts/anton.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="checkout.css">
+<!-- Replaces the ClickFunnels confirmation page (/order-confirmation-page1641831752103). Params: gi=1 (from the gi page "Yes"), name, email, phone.
+     TRACKING (inactive in mockup; config in consent.js, see own-checkout/stripe-plan.md): two separate purchases, each a Meta Purchase + Google Ads AW-962693517 conversion:
+     trial 20 (eventID = trial event_id, transaction_id = trial session id; also fired on gi.html) and gi 65 (eventID = '<trial event_id>-gi', transaction_id = '<trial session id>-gi').
+     The old ClickFunnels pixel was 186884630860567: Jim to confirm the Pixel ID for consent.js. LAUNCH: the receipt comes from /api/session, not URL params. -->
+<meta name="referrer" content="no-referrer">
+<script src="consent.js"></script>
+<script src="checkout-state.js"></script>
+</head>
+<body class="co wl">
+
+<header class="co-header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="New School BJJ Brixton home">
+      <img src="img/nsbjj-logo-192.jpg" alt="" width="42" height="42">
+      <span><b>New School BJJ</b><small>BRIXTON</small></span>
+    </a>
+    <a class="co-secure" href="tel:+447578284838" style="text-decoration:none">07578 284838</a>
+  </div>
+</header>
+
+<main class="co-main">
+  <div class="wrap">
+    <ol class="steps steps-done" aria-label="Checkout steps, all complete"><li class="done">1 · Trial ✓</li><li class="done">2 · Gi (optional)</li><li class="done on" aria-current="step">3 · Welcome ✓</li></ol>
+
+    <div class="wl-top">
+      <!-- HERO + the ONE primary action -->
+      <section class="wl-hero">
+        <span class="wl-paid" id="payment-status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span id="payment-status-text">Preview order — no payment taken</span></span>
+        <h1 class="display" id="welcome-heading">Your trial<span class="wl-name"></span>. <span class="accent">Next: your account.</span></h1>
+        <p class="lede" id="welcome-summary"><span class="if-nogi">Your sandbox trial payment is confirmed. Set up your account before booking a class.</span><span class="if-gi">Your sandbox trial payment is confirmed, and your gi will be fitted at your first class.</span></p>
+
+        <div class="wl-cta" id="membership-handoff">
+          <h2>Next: set up your membership</h2>
+          <p id="membership-status">Create your free Gymdesk account next. Staff will mark your trial as paid and help sync your card for membership billing. Your £70 monthly membership is managed in Gymdesk.</p>
+          <!-- Enable the approved free signup route only after a server-verified paid receipt and tested manual handoff. -->
+          <a class="btn btn-primary wl-btn" id="signup" aria-disabled="true" aria-describedby="membership-status">Create your free account</a>
+          <p class="wl-alt">Account creation is free. Don't buy a second trial. Ask the gym if you need help setting up your account.</p>
+        </div>
+      </section>
+
+      <!-- ORDER SUMMARY (mockup: built from URL params; live: from /api/session, i.e. the trial Checkout Session and the gi PaymentIntent) -->
+      <section class="wl-receipt" aria-labelledby="rc-h">
+        <div class="rc-head">
+          <h2 id="rc-h">Order summary</h2>
+          <!-- Placeholder order number: replace with the Stripe receipt number / PaymentIntent reference. -->
+          <span class="rc-no">Preview order</span>
+        </div>
+        <ul class="rc-lines">
+          <li><span><b>1 month trial</b><small>Adult classes, New School BJJ Brixton</small></span><span class="rc-amt">£20.00</span></li>
+          <li class="if-gi"><span><b>NSBJJ premium gi</b><small>Fitted at your first class</small></span><span class="rc-amt">£65.00</span></li>
+        </ul>
+        <div class="rc-total"><span id="rc-total-label">Preview total</span><b><span class="if-nogi">£20.00</span><span class="if-gi">£85.00</span></b></div>
+        <p class="rc-meta"><span id="rc-date"></span><span id="rc-delivery">Example receipt for </span><b id="rc-email">your email</b></p>
+      </section>
+    </div>
+
+    <!-- WHAT HAPPENS NEXT -->
+    <section class="wl-sec">
+      <h2 class="display wl-h2">What happens next</h2>
+      <ol class="wl-next">
+        <li><b>Create your account</b><span>About 3 minutes, or we'll do it with you at your first class.</span></li>
+        <li><b>Book your first class</b><span>Pick a beginners' class on the timetable and book it in the app.</span></li>
+        <li><b>Arrive 10 minutes early</b><span>Time to change and settle in before class starts.</span></li>
+        <li class="if-gi"><b>Get fitted for your gi</b><span>We fit your NSBJJ gi before class, so you train in your own from the start.</span></li>
+        <li class="if-nogi"><b>Borrow a gi for week one</b><span>We'll lend you one for your first week. Just turn up.</span></li>
+      </ol>
+    </section>
+
+    <!-- Team photo at the gym (130 Brixton Hill, BRIXTON mural): same shoot as the homepage hero (img/nsbjj-brixton-team-1920.jpg).
+         Web sizes: welcome-team-{1200,1600} (wide, desktop) and welcome-team-m-800 (4:3 crop, mobile). -->
+    <figure class="wl-img wl-team">
+      <picture>
+        <source media="(max-width:719px)" srcset="img/welcome-team-m-800.webp" type="image/webp">
+        <source media="(max-width:719px)" srcset="img/welcome-team-m-800.jpg">
+        <source srcset="img/welcome-team-1200.webp 1200w, img/welcome-team-1600.webp 1600w" sizes="(min-width:1240px) 1144px, 100vw" type="image/webp">
+        <img src="img/welcome-team-1200.jpg" alt="The New School BJJ team, around sixty members in gis, smiling in front of the Brixton mural at the gym" width="1200" height="474" loading="lazy">
+      </picture>
+      <figcaption><b>Welcome to the team.</b><span>Your new team. 130 Brixton Hill.</span></figcaption>
+    </figure>
+
+    <div class="wl-info">
+      <section class="panel">
+        <h2>What to bring</h2>
+        <ul class="bring">
+          <li>A bottle of water</li>
+          <li>Flip-flops or sliders for off the mats</li>
+          <li>A t-shirt or rash guard to wear under the gi</li>
+          <li>Short nails, fingers and toes</li>
+        </ul>
+      </section>
+      <section class="panel">
+        <h2>Find us</h2>
+        <ul class="contact-list">
+          <li><small>Address</small><a href="https://www.google.com/maps/search/?api=1&amp;query=New+School+BJJ+Brixton+130+Brixton+Hill+London+SW2+1RS" target="_blank" rel="noopener">130 Brixton Hill, London SW2 1RS</a><a class="wl-map" href="https://www.google.com/maps/search/?api=1&amp;query=New+School+BJJ+Brixton+130+Brixton+Hill+London+SW2+1RS" target="_blank" rel="noopener">Open in Maps →</a></li>
+          <li><small>Questions? Call or WhatsApp</small><a href="tel:+447578284838">07578 284838</a><a class="wl-map" href="https://wa.me/447578284838" target="_blank" rel="noopener">WhatsApp us →</a></li>
+        </ul>
+      </section>
+      <section class="terms-box">
+        <!-- Trial terms: confirm with Reiss (exact wording). Corrected from the ClickFunnels confirmation page, which says £65; live price and the Gymdesk waiver say £70.
+             Cancellation wording follows the current funnel: cancel any time during the trial via a message in the student portal; no refunds once billed. -->
+        <h2>Your trial terms</h2>
+        <ol>
+          <li>Your trial lasts one month (30 days) from sign-up, and you can come to any class on the adult timetable.</li>
+          <li>You can cancel at any time during the trial by sending us a message in your student portal.</li>
+          <li>After your first month, your membership continues at £70 a month (2 classes a week), unless you cancel or switch. Unlimited is £95 a month.</li>
+          <li>Payments taken after the trial ends can't be refunded, so cancel before your billing date if you don't want to continue.</li>
+        </ol>
+      </section>
+    </div>
+    <p class="mock-note">Design mockup, October 2026. Not live: order number and receipt are placeholders.</p>
+  </div>
+</main>
+
+<footer class="co-foot"><div class="wrap"><span>New School BJJ Brixton · 130 Brixton Hill, London SW2 1RS</span><a href="https://www.instagram.com/newschoolbjj_brixton/" target="_blank" rel="noopener">@newschoolbjj_brixton</a><span class="co-legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><button type="button" data-cookie-settings>Cookie settings</button></span></div></footer>
+
+<script>
+(function(){
+  if(window.NSBJJ_TRACKING&&NSBJJ_TRACKING.CHECKOUT_LIVE)return;
+  var p=new URLSearchParams(location.search);
+  document.body.classList.add(p.get('gi')==='1'?'has-gi':'no-gi');
+  document.querySelector('.wl-name').textContent=', Sam';
+  document.getElementById('rc-email').textContent='sam@example.test';
+  document.getElementById('welcome-summary').textContent='Preview only. No payment or class booking has been made.';
+})();
+// LIVE: order summary + PURCHASE CONVERSIONS (Meta Purchase + Google Ads), see own-checkout/stripe-plan.md.
+// URL: welcome.html?session_id=<trial cs_...>[&gi_session=<gi fallback cs_...>]. The page asks GET /api/session, which checks with Stripe and returns
+// {paid, first_name, email, trial:{value:20,event_id,transaction_id:cs_...}, gi:null|{value:65,event_id:'<trial event_id>-gi',transaction_id:'<trial cs id>-gi'}}.
+// Two separate purchases: Purchase 20 for the trial (also fired on gi.html; deduped per transaction) and, if the gi was bought, Purchase 65 with the gi's own event_id.
+// Each eventID matches the event Jim's Zaps send server-side (Zap 1 trial, Zap 2 gi), so Meta deduplicates them.
+// nsbjjTrackPurchase() (consent.js) fires only after cookie consent, once per transaction, and only when TRACKING_LIVE is true.
+(function(){
+  if(!(window.NSBJJ_TRACKING&&NSBJJ_TRACKING.CHECKOUT_LIVE))return;
+  var q=new URLSearchParams(location.search),sid=q.get('session_id'),gs=q.get('gi_session'),RE=/^cs_(test|live)_[A-Za-z0-9]+$/;
+  var status=document.getElementById('payment-status-text'),receipt=document.querySelector('.wl-receipt');
+  var heading=document.getElementById('welcome-heading'),summary=document.getElementById('welcome-summary');
+  var paidHeading=heading.innerHTML,paidSummary=summary.innerHTML;
+  heading.textContent='Checking your trial';summary.textContent='Please wait while we verify your payment.';
+  function unverified(){status.textContent='Payment not verified — please check your receipt or contact the gym.';receipt.hidden=true;heading.textContent='We need to check your trial';summary.textContent='We cannot confirm your booking yet. Check your receipt or contact the gym before paying again.';}
+  if(!sid||!RE.test(sid)){unverified();return;}
+  status.textContent='Checking your payment…';receipt.hidden=true;
+  var url='/api/session?id='+encodeURIComponent(sid)+(gs&&RE.test(gs)?'&gi_session='+encodeURIComponent(gs):'');
+  fetch(url,{headers:{Accept:'application/json'}})
+    .then(function(r){return r.ok?r.json():null;})
+    .then(function(s){
+      if(!window.NSBJJCheckout||!NSBJJCheckout.paidSession(s,sid)){unverified();return;}
+      heading.innerHTML=paidHeading;summary.innerHTML=paidSummary;
+      status.textContent='Sandbox test payment received · no real booking';receipt.hidden=false;
+      document.querySelector('.rc-no').textContent='Order '+s.trial.transaction_id;
+      document.getElementById('rc-total-label').textContent='Confirmed total';
+      if(s.trial.created)document.getElementById('rc-date').textContent=new Date(s.trial.created*1000).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+' · ';
+      if(!s.gi&&s.gi_status!=='not_selected'){
+        summary.textContent='Your £20 trial payment is confirmed. Your optional gi payment still needs checking; it is not included in the confirmed total. Contact the gym before paying again.';
+      }
+      var signup=document.getElementById('signup');
+      if(s.membership&&s.membership.signup_url==='https://www.newschoolbjjlondon.co.uk/signup/v/DJmWy'){
+        signup.href=s.membership.signup_url;signup.removeAttribute('aria-disabled');signup.rel='noreferrer';
+      }
+      document.getElementById('rc-delivery').textContent='Paid by card · Receipt email: ';
+      var b=document.body;b.classList.remove('has-gi','no-gi');b.classList.add(s.gi?'has-gi':'no-gi');
+      if(s.first_name)document.querySelector('.wl-name').textContent=', '+s.first_name.charAt(0).toUpperCase()+s.first_name.slice(1);
+      if(s.email)document.getElementById('rc-email').textContent=s.email;
+      if(!window.nsbjjTrackPurchase)return;
+      nsbjjTrackPurchase({value:s.trial.value,currency:'GBP',event_id:s.trial.event_id,transaction_id:s.trial.transaction_id});
+      if(s.gi)nsbjjTrackPurchase({value:s.gi.value,currency:'GBP',event_id:s.gi.event_id,transaction_id:s.gi.transaction_id});
+    })
+    .catch(unverified);
+})();
+</script>
+</body>
+</html>
