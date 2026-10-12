@@ -151,7 +151,7 @@
     banner=document.createElement('div');
     banner.className='cookie-banner';banner.setAttribute('role','region');banner.setAttribute('aria-label','Cookie choices');
     banner.innerHTML='<p class="cb-title">Cookies</p>'+
-      '<p class="cb-text">We\'d like to use optional cookies to show our map, live timetable and videos, and to measure our adverts. Nothing optional loads unless you accept. <a href="privacy.html#p13">Cookie details</a></p>'+
+      '<p class="cb-text">We\'d like to use optional cookies to show our map, live timetable and videos, and to measure our adverts. Nothing optional loads unless you accept.</p><a class="cb-link" href="privacy.html#p13">Cookie details</a>'+
       '<p class="cb-state" hidden></p>'+
       '<div class="cb-btns"><button type="button" class="cb-btn" data-c="rejected">Reject</button><button type="button" class="cb-btn" data-c="accepted">Accept</button></div>';
     banner.addEventListener('click',function(e){var b=e.target.closest('[data-c]');if(b)api.set(b.getAttribute('data-c'));});
@@ -174,7 +174,12 @@
     api.onAccept(function(){document.querySelectorAll('.consent-embed').forEach(loadEmbed);});
     document.addEventListener('click',function(e){var s=e.target.closest('[data-cookie-settings]');if(s){e.preventDefault();api.open();}});
     window.nsbjjAttribution.carry();
-    if(!choice)showBanner(false);
+    /* First visit: wait for the first scroll (or ~4s) so the bar never sits over the hero on load. */
+    if(!choice){
+      var shown=false,t;
+      var go=function(){if(shown||choice)return;shown=true;clearTimeout(t);window.removeEventListener('scroll',go);showBanner(false);};
+      window.addEventListener('scroll',go,{passive:true,once:true});t=setTimeout(go,4000);
+    }
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
