@@ -24,7 +24,7 @@
 <link rel="preload" href="fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="img/nsbjj-brixton-team-mobile.webp" media="(max-width:719px)">
 <link rel="preload" as="image" href="img/nsbjj-brixton-team-1920.webp" media="(min-width:720px)">
-<link rel="stylesheet" href="styles.css?v=20261012c">
+<link rel="stylesheet" href="styles.css?v=20261012d">
 
 <!-- LocalBusiness structured data. No aggregateRating: Google ignores self-served review markup for local businesses. -->
 <script type="application/ld+json">
@@ -177,6 +177,13 @@
       <div><span class="eyebrow">Your coaches</span><h2 class="display">World champion<br><span class="accent">coaches.</span></h2></div>
       <p class="lede">Two world champions who still compete at black belt, and who are on the mats teaching every week. You learn what works under pressure.</p>
     </div>
+    <!-- Numbers taken only from the approved coach copy/records below (Reiss: two-time World Masters; Leo: 8x Brazilian National, 3x European, IBJJF Open golds 2+3 = 5). -->
+    <ul class="rec-stats rv" aria-label="Coach achievements at a glance">
+      <li><strong>2×</strong><span>IBJJF World Masters champion · Reiss</span></li>
+      <li><strong>8×</strong><span>Brazilian National champion · Leo</span></li>
+      <li><strong>3×</strong><span>European champion · Leo</span></li>
+      <li><strong>5</strong><span>IBJJF Open golds at black belt, 2025–26 · Leo</span></li>
+    </ul>
     <div class="coaches">
       <article class="coach rv">
         <figure class="coach-photo">
@@ -188,6 +195,16 @@
           <span class="coach-role">Owner &amp; coach · Black belt</span>
           <h3>Reiss Bailey</h3>
           <p>Owns and runs New School BJJ Brixton and still competes at black belt. Two-time IBJJF World Masters champion.</p>
+          <details class="rec" data-rec>
+            <summary>See all Reiss's achievements</summary>
+            <ul class="titles">
+            <li><span class="yr">2026</span><span class="ev">IBJJF World Masters<small>Black belt, Master 2</small></span><span class="md gold">Gold</span></li>
+            <li><span class="yr">2025</span><span class="ev">English Open<small>Team title, New School BJJ Brixton</small></span><span class="md">Team champions</span></li>
+            <li><span class="yr">2024</span><span class="ev">IBJJF World Masters<small>Brown belt, Master 1</small></span><span class="md gold">Gold</span></li>
+            <li><span class="yr">2024</span><span class="ev">IBJJF Brasileiros<small>Brown belt, Master 1</small></span><span class="md gold">Gold</span></li>
+          </ul>
+            <a class="rec-more" href="coaches.html">Full coach profiles</a>
+          </details>
           <a class="coach-ig" href="https://www.instagram.com/reissbailey/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>@reissbailey</a>
         </div>
       </article>
@@ -204,6 +221,18 @@
           <!-- Record line is attributed: taken from Leo's own Instagram bio (@leonardonevesbjj):
                "1x World Pro Champion, 8x Brazilian National Champion, 3x European Champion". See SOURCES.md. -->
           <p>Started jiu-jitsu aged four in Brazil, moved to London in 2025, and now leads morning Fundamentals and weekday Advanced classes. His record: AJP World Pro and Grand Slam champion, 8x Brazilian National champion and 3x European champion.</p>
+          <details class="rec" data-rec>
+            <summary>See all Leo's achievements</summary>
+            <ul class="titles">
+            <li><span class="yr">2026</span><span class="ev">AJP Grand Slam Moscow<small>Black belt, pro 69kg</small></span><span class="md gold">Gold</span></li>
+            <li><span class="yr">2026</span><span class="ev">IBJJF Paris Spring &amp; London Opens<small>Black belt, adult feather</small></span><span class="md gold">Gold ×2</span></li>
+            <li><span class="yr">2025</span><span class="ev">IBJJF London Spring, Lisbon &amp; London Fall Opens<small>Black belt, adult feather</small></span><span class="md gold">Gold ×3</span></li>
+            <li><span class="yr">2023</span><span class="ev">AJP Abu Dhabi World Pro<small>World Professional Jiu-Jitsu Championship, brown belt</small></span><span class="md gold">Champion</span></li>
+            <li><span class="yr">2022</span><span class="ev">IBJJF Brasileiros (Brazilian Nationals)<small>Purple belt, adult light feather</small></span><span class="md gold">Gold</span></li>
+            <li><span class="yr">2019</span><span class="ev">IBJJF Pan &amp; European Championships<small>Juvenile blue belt (European again in 2020)</small></span><span class="md gold">Gold</span></li>
+          </ul>
+            <a class="rec-more" href="coaches.html">Full coach profiles</a>
+          </details>
           <a class="coach-ig" href="https://www.instagram.com/leonardonevesbjj/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>@leonardonevesbjj</a>
         </div>
       </article>
@@ -558,6 +587,10 @@
 document.querySelectorAll('.menu-panel a[href^="#"]').forEach(function(link){
   link.addEventListener('click',function(){link.closest('details').open=false;});
 });
+</script>
+<script>
+/* Coach records: open on desktop, collapsed behind "See all" on phones */
+(function(){var mq=matchMedia('(min-width:720px)');function set(){document.querySelectorAll('details[data-rec]').forEach(function(d){d.open=mq.matches;});}set();mq.addEventListener('change',set);})();
 </script>
 </body>
 </html>

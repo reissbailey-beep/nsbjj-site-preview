@@ -798,6 +798,18 @@ html.has-cookie-banner body{padding-bottom:64px}
 .cookie-banner:has(.cb-state:not([hidden])){flex-wrap:wrap}.cookie-banner .cb-state:not([hidden]){display:block;flex-basis:100%;order:-1}
 @media(min-width:720px){.cookie-banner{top:auto;bottom:auto;top:112px;right:20px;left:auto}html.has-cookie-banner body{padding-bottom:0}}
 
-/* Colour comparison look (index-colour.html), 12 Oct 2026 */
-.look-colour .hero picture img{filter:saturate(.55) sepia(.12) contrast(1.05) brightness(.92) hue-rotate(-8deg)}
-.look-colour .video-card img,.look-colour.homepage .hero-film img{filter:saturate(.7) contrast(1.05)}
+
+/* Coach achievements restored to home (Reiss, 12 Oct 2026) */
+.rec-stats{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 28px;padding:0}
+.rec-stats li{border:1px solid var(--line);border-radius:var(--r);padding:14px 14px 12px;background:var(--char)}
+.rec-stats strong{display:block;font:800 44px/1 var(--display);color:var(--accent)}
+.rec-stats span{display:block;font-size:12.5px;line-height:1.35;color:var(--muted);margin-top:6px}
+@media(min-width:720px){.rec-stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.rec-stats strong{font-size:56px}}
+.rec{margin:14px 0 18px}
+.rec summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:44px;font:700 14px/1 var(--sans);color:var(--accent)}
+.rec summary::-webkit-details-marker{display:none}
+.rec summary::after{content:"+";font:800 20px/1 var(--display)}
+.rec[open] summary::after{content:"–"}
+.rec .titles{margin-top:6px}
+.rec-more{display:inline-block;margin-top:10px;font-size:14px;font-weight:700;color:var(--text);text-underline-offset:3px}
+@media(min-width:720px){.rec summary{display:none}.rec{margin-top:0}}
