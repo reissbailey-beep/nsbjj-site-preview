@@ -13,8 +13,8 @@
 <link rel="icon" type="image/png" href="img/nsbjj-star-badge-192.png">
 <link rel="preload" href="fonts/big-shoulders-display-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=20261012d">
-<link rel="stylesheet" href="checkout.css">
+<link rel="stylesheet" href="styles.css?v=20261013r">
+<link rel="stylesheet" href="checkout.css?v=20261013r">
 <!-- Hosted Stripe Checkout; no payment fields or Stripe.js are embedded on this page. -->
 <meta name="referrer" content="no-referrer">
 <script src="consent.js"></script>
@@ -40,7 +40,8 @@
       <div>
         <span class="eyebrow" style="margin-top:26px">Adults · 130 Brixton Hill</span>
         <h1 class="display">Try a month of jiu-jitsu <span class="accent">for £20.</span></h1>
-        <p class="lede">A full month of unlimited adult classes, coached by world champions. Never trained? Perfect: start in our beginners' classes.</p>
+        <p class="lede">Never trained? Good. Every 6pm class except Wednesday's is Fundamentals &amp; Beginners, built for your first day. Give it a whole month, not one lesson, and see how far you come.</p>
+        <a class="btn btn-primary co-jump" href="#pay">Start my £20 month <span aria-hidden="true">↓</span></a>
 
         <!-- Video: "WELCOME TO NSBJJ" (1:02), YouTube DufPkHmTi1o, unlisted on the Reiss Bailey channel. Same video as the ClickFunnels sales page.
              Click-to-play: only the poster image loads until tapped, then the youtube-nocookie iframe is injected. -->
@@ -51,8 +52,20 @@
           </button>
         </div>
 
+        <section class="stack" aria-labelledby="stack-h">
+          <h2 id="stack-h">What you get</h2>
+          <ul>
+            <li>Unlimited adult classes for a whole month</li>
+            <li>Fundamentals &amp; Beginners classes at 6pm (every night except Wednesday)</li>
+            <li>A loaner gi for your first week</li>
+            <li>Someone from the team to greet you and show you around on day one</li>
+            <li>About 300 members to train with</li>
+          </ul>
+          <p class="stack-total">All for <b>£20.</b></p>
+        </section>
+
         <ul class="benefits">
-          <li><span class="ic">2X</span><span>World champion coaches<small>Owner &amp; coach Reiss Bailey: two-time IBJJF World Masters champion</small></span></li>
+          <li><span class="ic">2X</span><span>Coached by a world champion who started at 25<small>Owner &amp; coach Reiss Bailey: no sports background, now two-time IBJJF World Masters champion</small></span></li>
           <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span><span>Beginner-friendly classes<small>Dedicated beginners' classes every week</small></span></li>
           <li><span class="ic">7</span><span>Train around your life<small>Classes seven days a week</small></span></li>
           <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></span><span>4.5★ on Google<small>From 39 reviews</small></span></li>
@@ -60,43 +73,53 @@
       </div>
 
       <!-- Live submissions use the same-origin checkout API. The preview uses synthetic contact details only. -->
-      <form class="pay" id="pay" action="#" method="post" autocomplete="on">
-        <h2>Start your trial</h2>
+      <form class="pay" id="pay" action="#" method="post" autocomplete="on" novalidate>
+        <h2>Reserve your £20 month</h2>
         <div class="summary"><span><b>1 month · unlimited adult classes</b>Due today</span><strong>£20</strong></div>
 
-        <div class="field"><label for="name">Full name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
-        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
-        <div class="field"><label for="phone">Mobile</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+        <!-- TWO-STEP ORDER FORM. Step 1 saves name/email/mobile as a lead (POST /api/lead → site DB; GHL push behind LEAD_PUSH_LIVE=false) and fires Lead (consent-gated).
+             Step 2 opens hosted Stripe Checkout. Abandoned-checkout follow-up copy is a draft only: nsbjj-content/email/abandoned-checkout.md. -->
+        <fieldset class="co-step" id="step-lead">
+          <legend class="step-tag">Step 1 of 2 · Your details</legend>
+          <div class="field"><label for="name">Full name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+          <div class="field"><label for="phone">Mobile</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+          <!-- Attribution for the Stripe Checkout Session metadata. Filled by consent.js: UTMs/gclid/fbclid from the landing URL; fbp/fbc only after Accept. -->
+          <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term">
+          <input type="hidden" name="gclid"><input type="hidden" name="fbclid"><input type="hidden" name="fbp"><input type="hidden" name="fbc">
+          <button class="btn btn-lead" id="lead-next" type="button">Reserve my £20 month <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <p class="consent">Nothing is charged yet. We'll only use these details about your trial, as set out in our <a href="privacy.html">privacy notice</a>.</p>
+        </fieldset>
 
-        <!-- Attribution for the Stripe Checkout Session metadata (see own-checkout/stripe-plan.md). Filled by consent.js:
-             UTMs/gclid/fbclid from the landing URL (carried in the URL, stored only after cookie consent); fbp/fbc only after Accept. -->
-        <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign">
-        <input type="hidden" name="gclid"><input type="hidden" name="fbclid"><input type="hidden" name="fbp"><input type="hidden" name="fbc">
-        <div class="stripe-ph" role="note">
-          <b>Placeholder · Stripe Checkout</b>
-          At launch you pay on Stripe's secure page next (card, Apple Pay or Google Pay). Nothing is charged in this mockup.
-          <div class="fake" aria-hidden="true"><span>Card number</span><span>MM / YY</span><span>CVC</span></div>
-        </div>
+        <div class="co-step" id="step-pay" hidden>
+          <p class="step-tag">Step 2 of 2 · Payment</p>
+          <p class="lead-done">Your place is held<span id="lead-name"></span>. <button type="button" class="linkish" id="lead-edit">Edit details</button></p>
+          <div class="stripe-ph" role="note">
+            <b>Placeholder · Stripe Checkout</b>
+            At launch you pay on Stripe's secure page next (card, Apple Pay or Google Pay). Nothing is charged in this mockup.
+            <div class="fake" aria-hidden="true"><span>Card number</span><span>MM / YY</span><span>CVC</span></div>
+          </div>
 
-        <!-- Reiss confirmed: £20 for 30 days, then automatically £70/month for 2 classes a week unless cancelled. Gymdesk handoff still needs verification before checkout is enabled. -->
-        <button class="btn btn-pay" type="submit" aria-describedby="trial-agreement">Start my £20 trial <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <!-- [CONFIRM] Roll-on price: Reiss to confirm £70 (2 a week) or £95 unlimited. Russel recommends £95 unlimited with £70 as the downgrade. Gymdesk handoff still needs verification before checkout is enabled. -->
+          <button class="btn btn-pay" type="submit" aria-describedby="trial-agreement">Start my £20 month <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
 
-        <div class="trial-agreement" id="trial-agreement">
-          <p class="consent"><strong>£20 today for your 30-day trial.</strong> After your trial, your membership continues automatically at <strong>£70 a month (2 classes a week)</strong>, unless you cancel before it ends. You can ask to switch to £95 unlimited.</p>
-          <p class="consent">By starting your trial, you agree to the <a href="terms.html">trial terms</a> and authorise Stripe to save your card securely for membership billing in Gymdesk. The optional £65 gi is charged only if you choose it on the next page. Staff will help complete your Gymdesk setup.</p>
+          <div class="trial-agreement" id="trial-agreement">
+            <p class="consent"><strong>£20 today for your 30-day trial.</strong> After your trial, your membership continues automatically at <span class="tbc">[Placeholder: roll-on price awaiting Reiss — £70 a month (2 classes a week) or £95 unlimited]</span>, unless you cancel before it ends.</p>
+            <p class="consent">By starting your trial, you agree to the <a href="terms.html">trial terms</a> and authorise Stripe to save your card securely for membership billing in Gymdesk. The optional £65 gi is charged only if you choose it on the next page. Staff will help complete your Gymdesk setup.</p>
+          </div>
         </div>
 
         <ul class="trust">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Secure payment via Stripe. We never see your full card number.</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Cancel any time during your trial by sending us a message in your student portal.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Cancel any time during your trial through Gymdesk, by email or at the gym.</li>
         </ul>
 
         <details class="terms">
           <summary>Trial terms</summary>
           <ol>
             <li>Your trial lasts 30 days from sign-up, with unlimited adult classes on our timetable.</li>
-            <li>You can cancel at any time during the trial by sending us a message in your student portal.</li>
-            <li>If you don't cancel before your trial ends, your membership rolls on automatically at £70 a month (2 classes a week).</li>
+            <li>You can cancel at any time during the trial through Gymdesk, by email or at the gym.</li>
+            <li>If you don't cancel before your trial ends, your membership rolls on automatically at <span class="tbc">[Placeholder: roll-on price awaiting Reiss — £70 a month (2 classes a week) or £95 unlimited]</span>.</li>
             <li>Payments taken after the trial ends can't be refunded, so please cancel before your billing date if you don't want to continue.</li>
           </ol>
         </details>
@@ -105,6 +128,8 @@
     <p class="mock-note">Design mockup, October 2026. Not live: no payment is taken.</p>
   </div>
 </main>
+
+<div class="co-sticky" id="co-sticky"><a class="btn btn-primary" href="#pay">Start my £20 month</a></div>
 
 <footer class="co-foot"><div class="wrap"><span>New School BJJ Brixton · 130 Brixton Hill, London SW2 1RS</span><a href="tel:+447578284838">Questions? Call or WhatsApp 07578 284838</a><span class="co-legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><button type="button" data-cookie-settings>Cookie settings</button></span></div></footer>
 
@@ -130,6 +155,30 @@
     // Empty fields are dropped so the URL stays clean.
     Array.prototype.forEach.call(form.querySelectorAll('input[type=hidden]'),function(i){i.disabled=!i.value;});}
   fillAttr();form.addEventListener('submit',fillAttr);
+  // ---- Two-step order form ----
+  var leadId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-8xxx-xxxxxxxxxxxx'.replace(/x/g,function(){return(Math.random()*16|0).toString(16);});
+  if(window.nsbjjTrackEvent)nsbjjTrackEvent('InitiateCheckout',{value:20,currency:'GBP',content_name:'Trial month'},'ic-'+leadId);
+  var stepLead=document.getElementById('step-lead'),stepPay=document.getElementById('step-pay'),next=document.getElementById('lead-next');
+  function showPay(){stepLead.hidden=true;stepPay.hidden=false;var n=form.elements.name.value.trim().split(/\s+/)[0];document.getElementById('lead-name').textContent=n?', '+n:'';stepPay.querySelector('.step-tag').setAttribute('tabindex','-1');stepPay.querySelector('.step-tag').focus();}
+  document.getElementById('lead-edit').addEventListener('click',function(){stepPay.hidden=true;stepLead.hidden=false;form.elements.name.focus();});
+  next.addEventListener('click',function(){
+    var fields=[form.elements.name,form.elements.email,form.elements.phone];
+    for(var i=0;i<fields.length;i++){if(!fields[i].checkValidity()){fields[i].reportValidity();return;}}
+    fillAttr();
+    if(!(window.NSBJJ_TRACKING&&NSBJJ_TRACKING.CHECKOUT_LIVE)){showPay();return;}  // preview: no network, nothing stored
+    next.disabled=true;message.textContent='Saving your details…';
+    var a=window.nsbjjAttribution?nsbjjAttribution.get():{},lb={name:form.elements.name.value,email:form.elements.email.value,phone:form.elements.phone.value,lead_id:leadId};
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'].forEach(function(k){if(a[k])lb[k]=a[k];});
+    fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(lb)})
+      .then(function(r){return r.json().then(function(d){if(!r.ok)throw Error(d.error||'');return d;});})
+      .then(function(d){if(window.nsbjjTrackEvent)nsbjjTrackEvent('Lead',{content_name:'Trial month'},d.event_id||'lead-'+leadId);message.textContent='';showPay();})
+      .catch(function(e){message.textContent=e.message||'';showPay();})  // never block payment on the lead save
+      .then(function(){next.disabled=false;});
+  });
+  // Sticky mobile CTA: hidden while the order form is on screen.
+  var sticky=document.getElementById('co-sticky');
+  if(sticky&&window.IntersectionObserver)new IntersectionObserver(function(es){sticky.classList.toggle('is-hidden',es[0].isIntersecting);}).observe(form);
+
   // LIVE (NSBJJ_TRACKING.CHECKOUT_LIVE): POST to /api/checkout, which creates the £20 Stripe Checkout Session (card saved for the one-click gi)
   // and returns its URL. Stripe then returns the visitor to gi.html?session_id=cs_... Nothing personal goes on a URL.
   // The mobile goes to the server, which stores it in Stripe metadata as E.164 (+447...); Stripe's page doesn't ask for it. The preview uses synthetic data and never submits these details.
@@ -143,7 +192,7 @@
     var btn=form.querySelector('.btn-pay');if(btn.disabled)return;
     if(e.submitter!==btn){message.textContent='Use the trial button to accept the displayed trial and membership terms.';return;}
     btn.disabled=true;message.textContent='Opening secure checkout…';
-    var a=window.nsbjjAttribution?nsbjjAttribution.get():{},body={first_name:form.elements.name.value,email:form.elements.email.value,phone:form.elements.phone.value,membership_consent:true,request_id:checkoutRequestId};
+    var a=window.nsbjjAttribution?nsbjjAttribution.get():{},body={first_name:form.elements.name.value,email:form.elements.email.value,phone:form.elements.phone.value,membership_consent:true,request_id:checkoutRequestId,lead_id:leadId};
     ['fbp','fbc','utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'].forEach(function(k){if(a[k])body[k]=a[k];});
     prepareCheckout().then(function(){body.request_id=checkoutRequestId;return fetch('/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});})
       .then(function(r){return r.json().then(function(d){if(!r.ok)throw Error(d.error||'Checkout needs checking. Contact the gym before paying again.');return d;});})

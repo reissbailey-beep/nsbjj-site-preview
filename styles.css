@@ -813,3 +813,22 @@ html.has-cookie-banner body{padding-bottom:64px}
 .rec .titles{margin-top:6px}
 .rec-more{display:inline-block;margin-top:10px;font-size:14px;font-weight:700;color:var(--text);text-underline-offset:3px}
 @media(min-width:720px){.rec summary{display:none}.rec{margin-top:0}}
+
+/* Visible placeholder for facts awaiting Reiss's confirmation. Must be removed before launch. */
+.tbc{display:inline;background:#FFF3C4;color:#111;border:1px dashed #A8841A;border-radius:4px;padding:0 4px;font-weight:700;font-size:.92em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+
+/* v14: origin story + belief-breaking mini-stories (Russel review M2/S2) */
+.origin{background:var(--ink)}
+.origin-grid{display:grid;gap:28px;align-items:center}
+.origin-photo{margin:0;border-radius:var(--r);overflow:hidden;position:relative;background:var(--char)}
+.origin-photo img{width:100%;height:auto;display:block;filter:grayscale(1) contrast(1.05)}
+.origin-photo figcaption{position:absolute;left:12px;bottom:12px;padding:6px 10px;border-radius:999px;background:rgba(11,11,12,.8);font:700 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.origin-copy h2{font-size:clamp(42px,9vw,84px);margin:14px 0 18px}
+.origin-copy p{max-width:56ch;margin-bottom:14px;color:rgba(255,255,255,.86);line-height:1.6}
+.origin-punch{font:800 clamp(24px,4.4vw,34px)/1.1 var(--display);text-transform:uppercase;color:#fff!important;border-left:4px solid var(--accent);padding-left:14px;margin:22px 0!important}
+.beliefs{display:grid;gap:14px;margin-top:40px}
+.belief{padding:20px;border:1px solid var(--line);border-radius:var(--r);background:var(--char)}
+.belief-q{display:block;font:800 26px/1.05 var(--display);text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.belief p{color:rgba(255,255,255,.84);line-height:1.55}
+@media (min-width:1000px){.origin-grid{grid-template-columns:5fr 7fr;gap:64px}.beliefs{grid-template-columns:repeat(3,1fr)}}
+.hero h1.hero-hook{font-size:clamp(40px,9.4vw,92px);max-width:17ch}

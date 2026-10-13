@@ -11,8 +11,8 @@
 <link rel="icon" type="image/png" href="img/nsbjj-star-badge-192.png">
 <link rel="preload" href="fonts/big-shoulders-display-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=20261012d">
-<link rel="stylesheet" href="checkout.css">
+<link rel="stylesheet" href="styles.css?v=20261013r">
+<link rel="stylesheet" href="checkout.css?v=20261013r">
 <!-- Replaces the ClickFunnels confirmation page (/order-confirmation-page1641831752103). Params: gi=1 (from the gi page "Yes"), name, email, phone.
      TRACKING (inactive in mockup; config in consent.js, see own-checkout/stripe-plan.md): two separate purchases, each a Meta Purchase + Google Ads AW-962693517 conversion:
      trial 20 (eventID = trial event_id, transaction_id = trial session id; also fired on gi.html) and gi 65 (eventID = '<trial event_id>-gi', transaction_id = '<trial session id>-gi').
@@ -41,15 +41,23 @@
       <!-- HERO + the ONE primary action -->
       <section class="wl-hero">
         <span class="wl-paid" id="payment-status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span id="payment-status-text">Preview order — no payment taken</span></span>
-        <h1 class="display" id="welcome-heading">Your trial<span class="wl-name"></span>. <span class="accent">Next: your account.</span></h1>
-        <p class="lede" id="welcome-summary"><span class="if-nogi">Your sandbox trial payment is confirmed. Set up your account before booking a class.</span><span class="if-gi">Your sandbox trial payment is confirmed, and your gi will be fitted at your first class.</span></p>
+        <h1 class="display" id="welcome-heading">You're in<span class="wl-name"></span>. <span class="accent">Next: your first class.</span></h1>
+        <p class="lede" id="welcome-summary"><span class="if-nogi">Your sandbox trial payment is confirmed. Now pick your first class.</span><span class="if-gi">Your sandbox trial payment is confirmed, and your gi will be fitted at your first class.</span></p>
+
+        <!-- WELCOME VIDEO SLOT (Russel review M5). [PLACEHOLDER] 60-second phone-filmed welcome from Reiss: story + "we've got you" + what to bring.
+             When it exists, swap this figure for a click-to-play video (keep preload="none"). -->
+        <figure class="wl-video" id="welcome-video">
+          <img src="img/welcome-video-1280.jpg" srcset="img/welcome-video-640.webp 640w, img/welcome-video-1280.webp 1280w" sizes="(min-width:1000px) 640px, 100vw" alt="Reiss Bailey sitting on the mats in front of the Brixton mural" width="1280" height="720">
+          <figcaption><span class="tbc">[Placeholder: 60-second welcome video from Reiss, filmed on a phone]</span></figcaption>
+        </figure>
 
         <div class="wl-cta" id="membership-handoff">
-          <h2>Next: set up your membership</h2>
-          <p id="membership-status">Create your free Gymdesk account next. Staff will mark your trial as paid and help sync your card for membership billing. Your £70 monthly membership is managed in Gymdesk.</p>
-          <!-- Enable the approved free signup route only after a server-verified paid receipt and tested manual handoff. -->
-          <a class="btn btn-primary wl-btn" id="signup" aria-disabled="true" aria-describedby="membership-status">Create your free account</a>
-          <p class="wl-alt">Account creation is free. Don't buy a second trial. Ask the gym if you need help setting up your account.</p>
+          <h2>Book your first class</h2>
+          <p>Every 6pm class except Wednesday's is Fundamentals &amp; Beginners. Pick the night that suits you and book it.</p>
+          <!-- [PLACEHOLDER] Replace href with the Gymdesk deep link for the 6pm Fundamentals & Beginners class once Reiss/Jim supply it. -->
+          <a class="btn btn-primary wl-btn" id="book-first" href="timetable.html">Book your first class</a>
+          <p class="wl-alt"><span class="tbc">[Placeholder: Gymdesk booking link for the 6pm Fundamentals &amp; Beginners class]</span></p>
+          <p class="wl-alt" id="membership-status">Your Gymdesk account: <a id="signup" aria-disabled="true">set it up online</a>, or we'll set it up with you at your first class if that's easier.</p>
         </div>
       </section>
 
@@ -73,8 +81,8 @@
     <section class="wl-sec">
       <h2 class="display wl-h2">What happens next</h2>
       <ol class="wl-next">
-        <li><b>Create your account</b><span>About 3 minutes, or we'll do it with you at your first class.</span></li>
-        <li><b>Book your first class</b><span>Pick a beginners' class on the timetable and book it in the app.</span></li>
+        <li><b>Book your first class</b><span>Any 6pm class except Wednesday's: Fundamentals &amp; Beginners.</span></li>
+        <li><b>Gymdesk account</b><span>About 3 minutes online, or we'll set it up with you at your first class.</span></li>
         <li><b>Arrive 10 minutes early</b><span>Time to change and settle in before class starts.</span></li>
         <li class="if-gi"><b>Get fitted for your gi</b><span>We fit your NSBJJ gi before class, so you train in your own from the start.</span></li>
         <li class="if-nogi"><b>Borrow a gi for week one</b><span>We'll lend you one for your first week. Just turn up.</span></li>
@@ -116,8 +124,8 @@
         <h2>Your trial terms</h2>
         <ol>
           <li>Your trial lasts one month (30 days) from sign-up, and you can come to any class on the adult timetable.</li>
-          <li>You can cancel at any time during the trial by sending us a message in your student portal.</li>
-          <li>After your first month, your membership continues at £70 a month (2 classes a week), unless you cancel or switch. Unlimited is £95 a month.</li>
+          <li>You can cancel at any time during the trial through Gymdesk, by email or at the gym.</li>
+          <li>After your first month, your membership continues at <span class="tbc">[Placeholder: roll-on price awaiting Reiss — £70 a month (2 classes a week) or £95 unlimited]</span>, unless you cancel.</li>
           <li>Payments taken after the trial ends can't be refunded, so cancel before your billing date if you don't want to continue.</li>
         </ol>
       </section>

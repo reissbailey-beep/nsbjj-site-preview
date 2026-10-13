@@ -124,6 +124,18 @@
     });
   };
 
+  /* Standard funnel events (trial page): InitiateCheckout on load, Lead on step 1. Same gates as Purchase:
+     only after Accept, only when TRACKING_LIVE, never on previews. eventID lets the server CAPI event (CAPI_LIVE, off) dedupe. */
+  var sentEvents=Object.create(null);
+  window.nsbjjTrackEvent=function(name,params,eventID){
+    if(!name||!eventID)return;
+    api.onAccept(function(){
+      if(!CFG.TRACKING_LIVE||window.NSBJJ_PREVIEW)return;
+      if(sentEvents[name+':'+eventID])return;sentEvents[name+':'+eventID]=true;
+      if(window.fbq)fbq('track',name,params||{},{eventID:eventID});
+    });
+  };
+
   /* ---------- Click-to-load embeds ----------
      <div class="consent-embed" data-embed="map" data-src="https://www.google.com/maps?...&output=embed" data-title="..."> ...placeholder... </div>
      <div class="consent-embed" data-embed="gymdesk" data-gym="AyJpe"> ...placeholder... </div>
