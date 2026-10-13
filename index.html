@@ -24,7 +24,7 @@
 <link rel="preload" href="fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="img/nsbjj-brixton-team-mobile.webp" media="(max-width:719px)">
 <link rel="preload" as="image" href="img/nsbjj-brixton-team-1920.webp" media="(min-width:720px)">
-<link rel="stylesheet" href="styles.css?v=20261013o4">
+<link rel="stylesheet" href="styles.css?v=20261013h1">
 
 <!-- LocalBusiness structured data. No aggregateRating: Google ignores self-served review markup for local businesses. -->
 <script type="application/ld+json">
@@ -94,8 +94,13 @@
   </picture>
   <div class="wrap hero-inner">
     <span class="eyebrow reveal-up">130 Brixton Hill · London SW2</span>
-    <h1 class="display reveal-up d1 hero-hook">Brixton's jiu-jitsu family. <span class="accent">Come as you are.</span></h1>
-    <p class="lede reveal-up d2">Beginners, parents, people who haven't trained since school. Everyone here started on day one. £20 for your first month of unlimited classes.</p>
+    <h1 class="display reveal-up d1 hero-hook">Built in Brixton. <span class="accent">Built on beginners.</span></h1>
+    <p class="lede reveal-up d2 hero-cycle" aria-live="off">
+      <span class="hc-line is-on">Everyone here started as a beginner.</span>
+      <span class="hc-line" aria-hidden="true">Come as a beginner. See how far you go.</span>
+      <span class="hc-line" aria-hidden="true">Nobody here planned to compete.</span>
+    </p>
+    <p class="hero-price reveal-up d2">£20 for your first month of unlimited classes.</p>
     <div class="hero-ctas reveal-up d3">
       <a class="btn btn-primary" href="trial.html">Book your £20 month <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
@@ -611,6 +616,9 @@ document.querySelectorAll('.menu-panel a[href^="#"]').forEach(function(link){
 <script>
 /* Hide the mobile sticky bar while the member/worry stories are on screen, so it never covers a card */
 (function(){var st=document.querySelector('.sticky'),sec=document.getElementById('started-somewhere');if(st&&sec&&window.IntersectionObserver)new IntersectionObserver(function(e){st.classList.toggle('is-clear',e[0].isIntersecting);},{rootMargin:'0px 0px -90px 0px'}).observe(sec);})();
+/* Hero cycler: fade only, ~4s per line. Reduced motion keeps the first line static. Screen readers only ever get the first line. */
+(function(){var c=document.querySelector('.hero-cycle');if(!c||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var l=c.querySelectorAll('.hc-line'),i=0;
+setInterval(function(){l[i].classList.remove('is-on');i=(i+1)%l.length;l[i].classList.add('is-on');},4000);})();
 /* Coach records: open on desktop, collapsed behind "See all" on phones */
 (function(){var mq=matchMedia('(min-width:720px)');function set(){document.querySelectorAll('details[data-rec]').forEach(function(d){d.open=mq.matches;});}set();mq.addEventListener('change',set);})();
 </script>
