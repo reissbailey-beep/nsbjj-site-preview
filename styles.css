@@ -837,3 +837,5 @@ html.has-cookie-banner body{padding-bottom:64px}
 .member-stories{margin-top:24px}
 .member-reiss p{color:rgba(255,255,255,.84)}
 @media (min-width:1000px){.member-stories{grid-template-columns:repeat(4,1fr)}.proof.proof-3{grid-template-columns:repeat(3,1fr)}}
+/* Mobile: keep content clear of the fixed sticky CTA bar */
+@media (max-width:999px){html{scroll-padding-bottom:96px}body.homepage{padding-bottom:84px}.sticky{transition:opacity .25s ease,transform .25s ease}.sticky.is-clear{animation:none!important;opacity:0;transform:translateY(130%);pointer-events:none}}
