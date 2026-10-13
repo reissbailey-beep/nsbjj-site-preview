@@ -13,8 +13,8 @@
 <link rel="icon" type="image/png" href="img/nsbjj-star-badge-192.png">
 <link rel="preload" href="fonts/big-shoulders-display-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=20261013h1">
-<link rel="stylesheet" href="checkout.css?v=20261013h1">
+<link rel="stylesheet" href="styles.css?v=20261013h2">
+<link rel="stylesheet" href="checkout.css?v=20261013h2">
 <!-- Hosted Stripe Checkout; no payment fields or Stripe.js are embedded on this page. -->
 <meta name="referrer" content="no-referrer">
 <script src="consent.js"></script>
@@ -168,7 +168,7 @@
     if(!(window.NSBJJ_TRACKING&&NSBJJ_TRACKING.CHECKOUT_LIVE)){showPay();return;}  // preview: no network, nothing stored
     next.disabled=true;message.textContent='Saving your details…';
     var a=window.nsbjjAttribution?nsbjjAttribution.get():{},lb={name:form.elements.name.value,email:form.elements.email.value,phone:form.elements.phone.value,lead_id:leadId};
-    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'].forEach(function(k){if(a[k])lb[k]=a[k];});
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid','hook'].forEach(function(k){if(a[k])lb[k]=a[k];});
     fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(lb)})
       .then(function(r){return r.json().then(function(d){if(!r.ok)throw Error(d.error||'');return d;});})
       .then(function(d){if(window.nsbjjTrackEvent)nsbjjTrackEvent('Lead',{content_name:'Trial month'},d.event_id||'lead-'+leadId);message.textContent='';showPay();})
@@ -193,7 +193,7 @@
     if(e.submitter!==btn){message.textContent='Use the trial button to accept the displayed trial and membership terms.';return;}
     btn.disabled=true;message.textContent='Opening secure checkout…';
     var a=window.nsbjjAttribution?nsbjjAttribution.get():{},body={first_name:form.elements.name.value,email:form.elements.email.value,phone:form.elements.phone.value,membership_consent:true,request_id:checkoutRequestId,lead_id:leadId};
-    ['fbp','fbc','utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'].forEach(function(k){if(a[k])body[k]=a[k];});
+    ['fbp','fbc','utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid','hook'].forEach(function(k){if(a[k])body[k]=a[k];});
     prepareCheckout().then(function(){body.request_id=checkoutRequestId;return fetch('/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});})
       .then(function(r){return r.json().then(function(d){if(!r.ok)throw Error(d.error||'Checkout needs checking. Contact the gym before paying again.');return d;});})
       .then(function(d){

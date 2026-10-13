@@ -19,7 +19,7 @@
 (function(){
   'use strict';
   var KEY='nsbjj-consent', ATTR='nsbjj-attr', MAX_AGE=365*864e5, ATTR_AGE=30*864e5;
-  var ATTR_KEYS=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'];
+  var ATTR_KEYS=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid','hook'];
 
   /* ---------- TRACKING CONFIG (Jim) ----------
      TRACKING_LIVE stays false on the mockup so nothing reaches Meta or Google Ads from test pages.
@@ -63,6 +63,7 @@
   var urlP=new URLSearchParams(location.search), attr={};
   try{var s=JSON.parse(localStorage.getItem(ATTR)||'null');if(s&&Date.now()-s.ts<ATTR_AGE&&choice==='accepted')attr=s.d||{};}catch(e){}
   ATTR_KEYS.forEach(function(k){if(urlP.get(k))attr[k]=urlP.get(k).slice(0,200);});
+  if(attr.hook&&!/^h[1-4]$/.test(attr.hook))delete attr.hook; // ?hook= ad landing variant: only h1-h4 are kept
   function cookie(n){var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)');return m?decodeURIComponent(m[1]):'';}
   function saveAttr(){try{localStorage.setItem(ATTR,JSON.stringify({ts:Date.now(),d:attr}));}catch(e){}}
   if(choice==='accepted')saveAttr();

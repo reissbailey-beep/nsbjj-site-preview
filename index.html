@@ -24,7 +24,7 @@
 <link rel="preload" href="fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="img/nsbjj-brixton-team-mobile.webp" media="(max-width:719px)">
 <link rel="preload" as="image" href="img/nsbjj-brixton-team-1920.webp" media="(min-width:720px)">
-<link rel="stylesheet" href="styles.css?v=20261013h1">
+<link rel="stylesheet" href="styles.css?v=20261013h2">
 
 <!-- LocalBusiness structured data. No aggregateRating: Google ignores self-served review markup for local businesses. -->
 <script type="application/ld+json">
@@ -616,8 +616,12 @@ document.querySelectorAll('.menu-panel a[href^="#"]').forEach(function(link){
 <script>
 /* Hide the mobile sticky bar while the member/worry stories are on screen, so it never covers a card */
 (function(){var st=document.querySelector('.sticky'),sec=document.getElementById('started-somewhere');if(st&&sec&&window.IntersectionObserver)new IntersectionObserver(function(e){st.classList.toggle('is-clear',e[0].isIntersecting);},{rootMargin:'0px 0px -90px 0px'}).observe(sec);})();
-/* Hero cycler: fade only, ~4s per line. Reduced motion keeps the first line static. Screen readers only ever get the first line. */
-(function(){var c=document.querySelector('.hero-cycle');if(!c||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var l=c.querySelectorAll('.hc-line'),i=0;
+/* Hero cycler: fade only, ~4s per line. ?hook=h2|h3|h4 starts on line 1|2|3 (ads); h1 or anything else = default (line 1).
+   Reduced motion: the starting line stays static. Screen readers only get the starting line (others aria-hidden, aria-live off). */
+(function(){var c=document.querySelector('.hero-cycle');if(!c)return;var l=c.querySelectorAll('.hc-line');
+var hook=new URLSearchParams(location.search).get('hook'),start={h2:0,h3:1,h4:2}[hook]||0,i=start;
+l.forEach(function(x,k){x.classList.toggle('is-on',k===start);if(k===start)x.removeAttribute('aria-hidden');else x.setAttribute('aria-hidden','true');});
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 setInterval(function(){l[i].classList.remove('is-on');i=(i+1)%l.length;l[i].classList.add('is-on');},4000);})();
 /* Coach records: open on desktop, collapsed behind "See all" on phones */
 (function(){var mq=matchMedia('(min-width:720px)');function set(){document.querySelectorAll('details[data-rec]').forEach(function(d){d.open=mq.matches;});}set();mq.addEventListener('change',set);})();
