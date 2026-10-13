@@ -845,3 +845,4 @@ html.has-cookie-banner body{padding-bottom:64px}
 .hero-cycle .hc-line.is-on{opacity:1}
 .hero-price{margin-top:8px;font-size:15px;font-weight:700;color:var(--accent)}
 @media (prefers-reduced-motion:reduce){.hero-cycle .hc-line{transition:none}}
+@media (min-width:1000px){.proof.proof-2{grid-template-columns:repeat(2,minmax(0,1fr))}}
