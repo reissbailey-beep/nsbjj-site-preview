@@ -832,3 +832,8 @@ html.has-cookie-banner body{padding-bottom:64px}
 .belief p{color:rgba(255,255,255,.84);line-height:1.55}
 @media (min-width:1000px){.origin-grid{grid-template-columns:5fr 7fr;gap:64px}.beliefs{grid-template-columns:repeat(3,1fr)}}
 .hero h1.hero-hook{font-size:clamp(40px,9.4vw,92px);max-width:17ch}
+/* Option 1 team-led: member stories */
+.belief.interim .tbc,.member-ph .tbc{display:inline-block;margin-bottom:10px}
+.member-stories{margin-top:24px}
+.member-reiss p{color:rgba(255,255,255,.84)}
+@media (min-width:1000px){.member-stories{grid-template-columns:repeat(4,1fr)}.proof.proof-3{grid-template-columns:repeat(3,1fr)}}
