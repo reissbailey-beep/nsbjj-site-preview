@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-GB">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.facebook.com; font-src 'self'; media-src 'self'; connect-src 'self' https://www.facebook.com https://connect.facebook.net; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <script src="sandbox-only.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -15,8 +15,10 @@
 <link rel="preload" href="fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css?v=20261013r2">
 <link rel="stylesheet" href="checkout.css?v=20261013p2">
+<link rel="stylesheet" href="stack.css?v=20261019s1">
 <!-- Hosted Stripe Checkout; no payment fields or Stripe.js are embedded on this page. -->
 <meta name="referrer" content="no-referrer">
+<style>.co-ps{margin:40px 0 8px;padding:22px 20px;border-top:1px solid var(--line)}.co-ps p{font-size:17px;line-height:1.55;margin:0 0 16px;max-width:60ch}</style>
 <script src="consent.js"></script>
 <script src="checkout-state.js"></script>
 </head>
@@ -24,10 +26,10 @@
 
 <header class="co-header">
   <div class="wrap nav">
-    <a class="brand" href="index.html" aria-label="New School BJJ Brixton home">
+    <span class="brand">
       <img src="img/nsbjj-star-badge-42.png" srcset="img/nsbjj-star-badge-42.png 1x, img/nsbjj-star-badge-84.png 2x" alt="" width="42" height="42">
       <span><b>New School BJJ</b><small>BRIXTON</small></span>
-    </a>
+    </span>
     <span class="co-secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Secure checkout</span>
   </div>
 </header>
@@ -40,7 +42,7 @@
       <div>
         <span class="eyebrow" style="margin-top:26px">Adults · 130 Brixton Hill</span>
         <h1 class="display">Your first month on the mats: <span class="accent">£20.</span></h1>
-        <p class="lede">Never trained? Good. Every 6pm class except Wednesday's is Fundamentals &amp; Beginners, built for your first day. Give it a whole month, not one lesson. We've got you.</p>
+        <p class="lede">A month of unlimited Brazilian Jiu-Jitsu classes at 130 Brixton Hill. Never trained? Good. Start at 6pm Fundamentals on Monday, Tuesday, Thursday or Friday, or the Sunday 1pm class. Beginners welcome. We've got you.</p>
         <a class="btn btn-primary co-jump" href="#pay">Book your £20 month <span aria-hidden="true">↓</span></a>
 
         <!-- Video: "WELCOME TO NSBJJ" (1:02), YouTube DufPkHmTi1o, unlisted on the Reiss Bailey channel. Same video as the ClickFunnels sales page.
@@ -52,22 +54,28 @@
           </button>
         </div>
 
-        <section class="stack" aria-labelledby="stack-h">
-          <h2 id="stack-h">What you get</h2>
-          <ul>
-            <li>Unlimited adult classes for a whole month</li>
-            <li>Fundamentals &amp; Beginners classes at 6pm (every night except Wednesday)</li>
-            <li>A loaner gi for your first week</li>
-            <li>Someone from the team to greet you and show you around on day one</li>
-          </ul>
-          <p class="stack-total">All for <b>£20.</b></p>
+        <!-- Offer stack v2: Pablo's component (/workspace/design-bot/funnel/trial-stack-component/, 19 Oct), copy Halbert trial-welcome-38check-fixes-v1 word for word. Item 4 'A proper welcome' stays commented until Reiss confirms who greets them. -->
+        <section class="stack stack-v2" aria-labelledby="stack-h">
+          <div class="stack-box">
+            <h2 id="stack-h">What you get</h2>
+            <ul class="stack-items">
+            <li class="stack-item"><span class="stack-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M12 15.25c-1.2-1.6-2-2.2-3-2.2a2.2 2.2 0 0 0 0 4.4c1 0 1.8-.6 3-2.2s2-2.2 3-2.2a2.2 2.2 0 0 1 0 4.4c-1 0-1.8-.6-3-2.2z"/></svg></span><span class="stack-txt"><b class="stack-name">Unlimited classes for a month</b><span class="stack-ben">Come as often as you like, all month.</span></span></li>
+            <li class="stack-item"><span class="stack-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span><span class="stack-txt"><b class="stack-name">Beginner-friendly start times</b><span class="stack-ben">6pm Fundamentals Mon, Tue, Thu and Fri, plus Sunday 1pm.</span></span></li>
+            <li class="stack-item"><span class="stack-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.5 3.5L4 6.5 3 13l3 .8V21h12v-7.2l3-.8-1-6.5-4.5-3"/><path d="M8.5 3.5L12 9l3.5-5.5"/><path d="M12 9v12"/><path d="M6 15h12"/><path d="M10 15l-1 3M14 15l1 3"/></svg></span><span class="stack-txt"><b class="stack-name">Borrow a gi free</b><span class="stack-ben">Use one of ours for your first week, so there's nothing to buy to start.</span></span></li>
+            <li class="stack-item"><span class="stack-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg></span><span class="stack-txt"><b class="stack-name">A proper welcome</b><span class="stack-ben">Come to a 6pm Fundamentals class and someone from the team will meet you and show you around.</span></span></li>
+            </ul>
+          </div>
+          <div class="stack-close">
+            <p class="stack-total">All for <b>£20.</b></p>
+            <a class="btn btn-primary stack-cta" href="#pay">Book your £20 month <span aria-hidden="true">↓</span></a>
+          </div>
         </section>
+        <!-- REVIEW:JIM: named member review slot (38-check F3). Left empty on purpose until Jim picks and verifies a real Google review; star rating/review count removed until Reiss confirms the live number. -->
 
         <ul class="benefits">
           <li><span class="ic">2X</span><span>Taught by our coaches<small>Including two-time IBJJF World Masters champion Reiss Bailey</small></span></li>
-          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span><span>Beginner-friendly classes<small>Dedicated beginners' classes every week</small></span></li>
-          <li><span class="ic">7</span><span>Train around your life<small>Classes seven days a week</small></span></li>
-          <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></span><span>4.5★ on Google<small>From 39 reviews</small></span></li>
+          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span><span>Beginner-friendly classes<small>Fundamentals classes, beginners welcome</small></span></li>
+          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/><path d="M17 3v4M15 5h4"/></svg></span><span>Train around your life<small>Evening classes, plus Sunday afternoons</small></span></li>
         </ul>
       </div>
 
@@ -85,7 +93,7 @@
           <div class="field"><label for="phone">Mobile</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
           <!-- Attribution for the Stripe Checkout Session metadata. Filled by consent.js: UTMs/gclid/fbclid from the landing URL; fbp/fbc only after Accept. -->
           <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term">
-          <input type="hidden" name="gclid"><input type="hidden" name="fbclid"><input type="hidden" name="fbp"><input type="hidden" name="fbc">
+          <input type="hidden" name="page_version" id="page_version" data-keep="1"><input type="hidden" name="gclid"><input type="hidden" name="fbclid"><input type="hidden" name="fbp"><input type="hidden" name="fbc">
           <button class="btn btn-lead" id="lead-next" type="button">Book your £20 month <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
           <p class="consent">Nothing is charged yet. We'll only use these details about your trial, as set out in our <a href="privacy.html">privacy notice</a>.</p>
         </fieldset>
@@ -93,38 +101,39 @@
         <div class="co-step" id="step-pay" hidden>
           <p class="step-tag">Step 2 of 2 · Payment</p>
           <p class="lead-done">Your place is held<span id="lead-name"></span>. <button type="button" class="linkish" id="lead-edit">Edit details</button></p>
-          <div class="stripe-ph" role="note">
-            <b>Placeholder · Stripe Checkout</b>
-            At launch you pay on Stripe's secure page next (card, Apple Pay or Google Pay). Nothing is charged in this mockup.
-            <div class="fake" aria-hidden="true"><span>Card number</span><span>MM / YY</span><span>CVC</span></div>
-          </div>
 
           <!-- Roll-on price confirmed by Reiss 13 Oct 21:10: £70 a month (2 classes a week). Gymdesk handoff still needs verification before checkout is enabled. -->
           <button class="btn btn-pay" type="submit" aria-describedby="trial-agreement">Pay £20 securely <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
 
           <div class="trial-agreement" id="trial-agreement">
-            <p class="consent"><strong>£20 today for your 30-day trial.</strong> After your trial, your membership continues automatically at £70 a month (2 classes a week), unless you cancel before it ends.</p>
-            <p class="consent">By starting your trial, you agree to the <a href="terms.html">trial terms</a> and authorise Stripe to save your card securely for membership billing in Gymdesk. The optional £65 gi is charged only if you choose it on the next page. Staff will help complete your Gymdesk setup.</p>
+            <p class="consent"><strong>£20 today for one month of unlimited adult classes.</strong> After that it's £70 a month for 2 classes a week. Not for you? Let the team know before your month ends and the £70 won't start.</p>
+            <p class="consent">By starting your trial, you agree to <a href="#trial-terms">the terms of your £20 month</a>. Stripe, our payment provider, takes your £20 and saves your card securely for payments to New School BJJ Brixton. The optional £65 gi is only charged if you choose it on the next page. Staff will help you set up your Gymdesk account for your membership.</p>
           </div>
         </div>
 
         <ul class="trust">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Secure payment via Stripe. We never see your full card number.</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Cancel any time during your trial through Gymdesk, by email or at the gym.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Not for you? Let the team know before your month ends, in person or on the number below.</li>
         </ul>
 
-        <details class="terms">
-          <summary>Trial terms</summary>
+        <!-- TERMS: identical to welcome.html's terms block (non-gi state), source /workspace/copywriting/showup/thankyou-trial-terms-v1.md (Halbert/Russel 19 Oct). Full legal terms stay in terms.html. -->
+        <details class="terms" id="trial-terms">
+          <summary>Your £20 month</summary>
           <ol>
-            <li>Your trial lasts 30 days from sign-up, with unlimited adult classes on our timetable.</li>
-            <li>You can cancel at any time during the trial through Gymdesk, by email or at the gym.</li>
-            <li>If you don't cancel before your trial ends, your membership rolls on automatically at £70 a month (2 classes a week).</li>
-            <li>Payments taken after the trial ends can't be refunded, so please cancel before your billing date if you don't want to continue.</li>
+            <li>One month of unlimited adult classes, starting the day you buy. Want a different start date? Just ask the team.</li>
+            <li>After your month, it carries on at £70 a month for 2 classes a week. You don't need to do anything to stay.</li>
+            <li>Don't want to carry on? Let the team know any time before your month ends, in person or through the contact details on this page, and the £70 won't start.</li>
+            <li>Classes are capped, so book each one ahead on the schedule.</li>
+            <li>You can borrow a gi for your first week.</li>
           </ol>
         </details>
       </form>
     </div>
-    <p class="mock-note">Design mockup, October 2026. Not live: no payment is taken.</p>
+    <!-- P.S.: Halbert trial-welcome-38check-fixes-v1 (F5), last block before the footer. -->
+    <section class="co-ps" aria-label="P.S.">
+      <p>P.S. You don't need to be fit, flexible or tough to start. Loads of our members walked in exactly where you are now. £20 gets you a whole month of unlimited classes to find out if it's for you.</p>
+      <a class="btn btn-primary" href="#pay">Book your £20 month</a>
+    </section>
   </div>
 </main>
 
@@ -139,6 +148,11 @@
   ['name','email','phone'].forEach(function(k){var v=p.get(k),el=document.getElementById(k);if(v&&el)el.value=v;});
   // Attribution -> hidden fields (refreshed on submit so fbp/fbc are included if consent was given on this page).
   var form=document.getElementById('pay');
+  // Funnel template: which trial page sent the visitor (whitelisted).
+  var PV=(p.get('page_version')||'').toLowerCase();if(!/^(reiss-story|nervous-first-class)$/.test(PV))PV='direct';form.elements.page_version.value=PV;
+  // Meta Lead, once per session (pattern: /workspace/funnel/orderform-lead-snippet.html). Approved pixel only; fbq exists only after cookie consent.
+  // Consent-gated via nsbjjTrackEvent (pixel 186884630860567, eventID for CAPI dedupe); session guard so Lead fires once per session.
+  function leadOnce(eid){var KEY='nsbjj_lead_sent';try{if(sessionStorage.getItem(KEY))return;sessionStorage.setItem(KEY,'1');}catch(e){}if(window.nsbjjTrackEvent)nsbjjTrackEvent('Lead',{content_name:'NSBJJ trial opt-in',page_version:PV},eid);}
   var checkoutRequestId='',checkoutContext=null;
   function prepareCheckout(){
     if(!window.navigator||!navigator.locks||!navigator.locks.request)return Promise.reject(Error('Please use an up-to-date browser for secure checkout, or contact the gym.'));
@@ -152,7 +166,7 @@
   if(window.addEventListener)window.addEventListener('pageshow',function(){form.querySelector('.btn-pay').disabled=false;});
   function fillAttr(){if(!window.nsbjjAttribution)return;var a=nsbjjAttribution.get();Object.keys(a).forEach(function(k){var i=form.elements[k];if(i)i.value=a[k];});
     // Empty fields are dropped so the URL stays clean.
-    Array.prototype.forEach.call(form.querySelectorAll('input[type=hidden]'),function(i){i.disabled=!i.value;});}
+    Array.prototype.forEach.call(form.querySelectorAll('input[type=hidden]'),function(i){i.disabled=!i.value;});form.elements.page_version.value=PV;form.elements.page_version.disabled=false;}
   fillAttr();form.addEventListener('submit',fillAttr);
   // ---- Two-step order form ----
   var leadId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-8xxx-xxxxxxxxxxxx'.replace(/x/g,function(){return(Math.random()*16|0).toString(16);});
@@ -164,14 +178,14 @@
     var fields=[form.elements.name,form.elements.email,form.elements.phone];
     for(var i=0;i<fields.length;i++){if(!fields[i].checkValidity()){fields[i].reportValidity();return;}}
     fillAttr();
-    if(!(window.NSBJJ_TRACKING&&NSBJJ_TRACKING.CHECKOUT_LIVE)){showPay();return;}  // preview: no network, nothing stored
+    if(!(window.NSBJJ_TRACKING&&NSBJJ_TRACKING.CHECKOUT_LIVE)){leadOnce('lead-'+leadId);showPay();return;}  // preview: no network, nothing stored
     next.disabled=true;message.textContent='Saving your details…';
-    var a=window.nsbjjAttribution?nsbjjAttribution.get():{},lb={name:form.elements.name.value,email:form.elements.email.value,phone:form.elements.phone.value,lead_id:leadId};
+    var a=window.nsbjjAttribution?nsbjjAttribution.get():{},lb={name:form.elements.name.value,email:form.elements.email.value,phone:form.elements.phone.value,lead_id:leadId,page_version:PV};
     ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid','hook'].forEach(function(k){if(a[k])lb[k]=a[k];});
     fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(lb)})
       .then(function(r){return r.json().then(function(d){if(!r.ok)throw Error(d.error||'');return d;});})
-      .then(function(d){if(window.nsbjjTrackEvent)nsbjjTrackEvent('Lead',{content_name:'Trial month'},d.event_id||'lead-'+leadId);message.textContent='';showPay();})
-      .catch(function(e){message.textContent=e.message||'';showPay();})  // never block payment on the lead save
+      .then(function(d){leadOnce(d.event_id||'lead-'+leadId);message.textContent='';showPay();})
+      .catch(function(e){leadOnce('lead-'+leadId);message.textContent=e.message||'';showPay();})  // never block payment on the lead save
       .then(function(){next.disabled=false;});
   });
   // Sticky mobile CTA: hidden while the order form is on screen.
@@ -191,7 +205,7 @@
     var btn=form.querySelector('.btn-pay');if(btn.disabled)return;
     if(e.submitter!==btn){message.textContent='Use the trial button to accept the displayed trial and membership terms.';return;}
     btn.disabled=true;message.textContent='Opening secure checkout…';
-    var a=window.nsbjjAttribution?nsbjjAttribution.get():{},body={first_name:form.elements.name.value,email:form.elements.email.value,phone:form.elements.phone.value,membership_consent:true,request_id:checkoutRequestId,lead_id:leadId};
+    var a=window.nsbjjAttribution?nsbjjAttribution.get():{},body={first_name:form.elements.name.value,email:form.elements.email.value,phone:form.elements.phone.value,membership_consent:true,request_id:checkoutRequestId,lead_id:leadId,page_version:PV};
     ['fbp','fbc','utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid','hook'].forEach(function(k){if(a[k])body[k]=a[k];});
     prepareCheckout().then(function(){body.request_id=checkoutRequestId;return fetch('/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});})
       .then(function(r){return r.json().then(function(d){if(!r.ok)throw Error(d.error||'Checkout needs checking. Contact the gym before paying again.');return d;});})
@@ -210,6 +224,12 @@
     b.replaceWith(w);
   });
 })();
+</script>
+<script>
+// The "trial terms" link (line 107) points at the on-page #trial-terms block; open it when followed, since a fragment link doesn't expand a closed <details>.
+(function(){function openTerms(){if(location.hash==='#trial-terms'){var d=document.getElementById('trial-terms');if(d)d.open=true;}}
+addEventListener('hashchange',openTerms);document.addEventListener('DOMContentLoaded',openTerms);
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href="#trial-terms"]');if(a){var d=document.getElementById('trial-terms');if(d)d.open=true;}});})();
 </script>
 </body>
 </html>

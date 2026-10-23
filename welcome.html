@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-GB">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.facebook.com; font-src 'self'; media-src 'self'; connect-src 'self' https://www.facebook.com https://connect.facebook.net; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <script src="sandbox-only.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -18,6 +18,19 @@
      trial 20 (eventID = trial event_id, transaction_id = trial session id; also fired on gi.html) and gi 65 (eventID = '<trial event_id>-gi', transaction_id = '<trial session id>-gi').
      The old ClickFunnels pixel was 186884630860567: Jim to confirm the Pixel ID for consent.js. LAUNCH: the receipt comes from /api/session, not URL params. -->
 <meta name="referrer" content="no-referrer">
+<style>
+/* Pick-your-first-class card (welcome.html only). Brand gold #F2B705 via the funnel's existing .wl-cta / .btn-primary. */
+.wl-sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.wl-pick{margin-top:4px}
+.wl-pick>p{color:var(--muted);font-size:15px;line-height:1.5;margin:0 0 8px}
+.wl-pick>p.wl-msg-hi{color:inherit;font:800 21px/1.12 var(--display);text-transform:uppercase;letter-spacing:.01em;margin-bottom:10px}
+.wl-pick>p.wl-tap{color:inherit;font-weight:700;margin:12px 0 0}
+.wl-pick .wl-btn{margin-top:10px}
+.wl-pick>p.wl-alt{font-size:14px;margin:12px 0 0}
+.wl-pick>p.wl-look{color:inherit;margin-top:10px}
+@media(max-width:719px){.wl-hero .wl-paid{margin-bottom:0}.wl-hero h1.display{margin:8px 0}.wl-hero .lede{font-size:15px;margin-bottom:14px}.wl-pick{padding:16px 16px 18px}}
+@media(min-width:1000px){.wl-pick>p{font-size:16px;line-height:1.5}.wl-pick>p.wl-msg-hi{font-size:26px}.wl-hero h1.display{font-size:clamp(56px,5.2vw,80px)}}
+</style>
 <script src="consent.js"></script>
 <script src="checkout-state.js"></script>
 </head>
@@ -25,10 +38,10 @@
 
 <header class="co-header">
   <div class="wrap nav">
-    <a class="brand" href="index.html" aria-label="New School BJJ Brixton home">
+    <span class="brand">
       <img src="img/nsbjj-star-badge-42.png" srcset="img/nsbjj-star-badge-42.png 1x, img/nsbjj-star-badge-84.png 2x" alt="" width="42" height="42">
       <span><b>New School BJJ</b><small>BRIXTON</small></span>
-    </a>
+    </span>
     <a class="co-secure" href="tel:+447578284838" style="text-decoration:none">07578 284838</a>
   </div>
 </header>
@@ -40,23 +53,25 @@
     <div class="wl-top">
       <!-- HERO + the ONE primary action -->
       <section class="wl-hero">
-        <span class="wl-paid" id="payment-status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span id="payment-status-text">Preview order — no payment taken</span></span>
+        <span class="wl-paid" id="payment-status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span id="payment-status-text">Checking your payment…</span></span>
         <h1 class="display" id="welcome-heading">You're in<span class="wl-name"></span>. <span class="accent">Next: your first class.</span></h1>
-        <p class="lede" id="welcome-summary"><span class="if-nogi">Your sandbox trial payment is confirmed. Now pick your first class.</span><span class="if-gi">Your sandbox trial payment is confirmed, and your gi will be fitted at your first class.</span></p>
+        <p class="lede" id="welcome-summary"><span class="if-nogi">Your £20 month is ready. Now pick your first class.</span><span class="if-gi">Your £20 month is ready, and so is your club gi.</span></p>
 
-        <!-- WELCOME VIDEO SLOT (Russel review M5). [PLACEHOLDER] 60-second phone-filmed welcome from Reiss: story + "we've got you" + what to bring.
-             When it exists, swap this figure for a click-to-play video (keep preload="none"). -->
-        <figure class="wl-video" id="welcome-video">
-          <img src="img/welcome-video-1280.jpg" srcset="img/welcome-video-640.webp 640w, img/welcome-video-1280.webp 1280w" sizes="(min-width:1000px) 640px, 100vw" alt="Reiss Bailey sitting on the mats in front of the Brixton mural" width="1280" height="720">
-          <figcaption><span class="tbc">[Placeholder: 60-second welcome video from Reiss, filmed on a phone]</span></figcaption>
-        </figure>
-
-        <div class="wl-cta" id="membership-handoff">
-          <h2>Book your first class</h2>
-          <p>Every 6pm class except Wednesday's is Fundamentals &amp; Beginners. Pick the night that suits you and book it.</p>
-          <!-- [PLACEHOLDER] Replace href with the Gymdesk deep link for the 6pm Fundamentals & Beginners class once Reiss/Jim supply it. -->
-          <a class="btn btn-primary wl-btn" id="book-first" href="timetable.html">Book your first class</a>
-          <p class="wl-alt"><span class="tbc">[Placeholder: Gymdesk booking link for the 6pm Fundamentals &amp; Beginners class]</span></p>
+        <!-- PICK YOUR FIRST CLASS: copy is Halbert's "pick-first-class v1" (/workspace/copywriting/showup/pick-first-class-v1.md, WhatsApp template first_class_pick),
+             passed by Russel 19 Oct 2026. Used word for word; {{1}} = first name (from /api/session). Do not edit the words here: changes go through Halbert, then Russel.
+             The "borrow a gi" line shows only to people who did NOT buy the gi (gi buyers are fitted for their own at the first class).
+             BOOKING: one tap to the Gymdesk public schedule (the copy's own link, and Russel's 19 Oct ruling for booking links). Gymdesk has no per-class deep link,
+             so the class can't be preselected: they tap the class on the schedule, then Book. Beginner slots (Reiss, 19 Oct): 6pm Mon/Tue/Thu/Fri, Sunday 1pm. -->
+        <div class="wl-cta wl-pick" id="membership-handoff">
+          <h2 id="pick-h" class="wl-sr">Book your first class</h2>
+          <p class="wl-msg-hi">Hi <span class="wl-fname">there</span>, it's New School BJJ Brixton.</p>
+          <p>Your month has started, so let's get your first class booked.</p>
+          <p>The best ones to start with are the 6pm Fundamentals on Monday, Tuesday, Thursday or Friday (beginners welcome), or the Sunday 1pm class. Classes are capped so everyone gets proper coaching, so booking ahead saves your spot.</p>
+          <p class="wl-greet">Make your first class a 6pm Fundamentals and someone from the team will be there to meet you and show you around.</p>
+          <p class="if-nogi">You can borrow a gi for your first week, so just bring yourself.</p>
+          <p class="wl-tap">Tap below to pick yours.</p>
+          <a class="btn btn-primary wl-btn" id="book-first" href="https://www.newschoolbjjlondon.co.uk/schedule">Book my first class</a>
+          <p class="wl-alt wl-look" id="book-hint">On the schedule, look for Beginners (Mon, Thu, Fri) or Gi Fundamentals (Tue) at 6pm, or Gi Mixed on Sunday at 1pm.</p>
           <p class="wl-alt" id="membership-status">Your Gymdesk account: <a id="signup" aria-disabled="true">set it up online</a>, or we'll set it up with you at your first class if that's easier.</p>
         </div>
       </section>
@@ -65,15 +80,14 @@
       <section class="wl-receipt" aria-labelledby="rc-h">
         <div class="rc-head">
           <h2 id="rc-h">Order summary</h2>
-          <!-- Placeholder order number: replace with the Stripe receipt number / PaymentIntent reference. -->
-          <span class="rc-no">Preview order</span>
+          <span class="rc-no"></span>
         </div>
         <ul class="rc-lines">
           <li><span><b>1 month trial</b><small>Adult classes, New School BJJ Brixton</small></span><span class="rc-amt">£20.00</span></li>
-          <li class="if-gi"><span><b>NSBJJ premium gi</b><small>Fitted at your first class</small></span><span class="rc-amt">£65.00</span></li>
+          <li class="if-gi"><span><b>Club gi</b></span><span class="rc-amt">£65.00</span></li>
         </ul>
-        <div class="rc-total"><span id="rc-total-label">Preview total</span><b><span class="if-nogi">£20.00</span><span class="if-gi">£85.00</span></b></div>
-        <p class="rc-meta"><span id="rc-date"></span><span id="rc-delivery">Example receipt for </span><b id="rc-email">your email</b></p>
+        <div class="rc-total"><span id="rc-total-label">Total</span><b><span class="if-nogi">£20.00</span><span class="if-gi">£85.00</span></b></div>
+        <p class="rc-meta"><span id="rc-date"></span><span id="rc-delivery">Receipt email: </span><b id="rc-email"></b></p>
       </section>
     </div>
 
@@ -81,10 +95,10 @@
     <section class="wl-sec">
       <h2 class="display wl-h2">What happens next</h2>
       <ol class="wl-next">
-        <li><b>Book your first class</b><span>Any 6pm class except Wednesday's: Fundamentals &amp; Beginners.</span></li>
+        <li><b>Book your first class:</b><span>6pm on Monday, Tuesday, Thursday or Friday, or Sunday at 1pm.</span></li>
         <li><b>Gymdesk account</b><span>About 3 minutes online, or we'll set it up with you at your first class.</span></li>
         <li><b>Arrive 10 minutes early</b><span>Time to change and settle in before class starts.</span></li>
-        <li class="if-gi"><b>Get fitted for your gi</b><span>We fit your NSBJJ gi before class, so you train in your own from the start.</span></li>
+        <li class="if-gi"><b>Get fitted for your gi</b><span>Your club gi is ready to collect, and staff will fit it in person.</span></li>
         <li class="if-nogi"><b>Borrow a gi for week one</b><span>We'll lend you one for your first week. Just turn up.</span></li>
       </ol>
     </section>
@@ -119,22 +133,22 @@
         </ul>
       </section>
       <section class="terms-box">
-        <!-- Trial terms: confirm with Reiss (exact wording). Corrected from the ClickFunnels confirmation page, which says £65; live price and the Gymdesk waiver say £70.
-             Cancellation wording follows the current funnel: cancel any time during the trial via a message in the student portal; no refunds once billed. -->
-        <h2>Your trial terms</h2>
+        <!-- TERMS:HALBERT: Halbert's trial terms (19 Oct 2026), used word for word; pending Russel's pass. Replaces the previous four-point terms list. -->
+        <h2>Your £20 month</h2>
         <ol>
-          <li>Your trial lasts one month (30 days) from sign-up, and you can come to any class on the adult timetable.</li>
-          <li>You can cancel at any time during the trial through Gymdesk, by email or at the gym.</li>
-          <li>After your first month, your membership continues at £70 a month (2 classes a week), unless you cancel.</li>
-          <li>Payments taken after the trial ends can't be refunded, so cancel before your billing date if you don't want to continue.</li>
+          <li>One month of unlimited adult classes, starting the day you buy. Want a different start date? Just ask the team.</li>
+          <li>After your month, it carries on at £70 a month for 2 classes a week. You don't need to do anything to stay.</li>
+          <li>Don't want to carry on? Let the team know any time before your month ends, in person or through the contact details on this page, and the £70 won't start.</li>
+          <li>Classes are capped, so book each one ahead on the schedule.</li>
+          <li class="if-nogi">You can borrow a gi for your first week.</li>
+          <li class="if-gi">Your club gi is ready to collect, and staff will fit it in person.</li>
         </ol>
       </section>
     </div>
-    <p class="mock-note">Design mockup, October 2026. Not live: order number and receipt are placeholders.</p>
   </div>
 </main>
 
-<footer class="co-foot"><div class="wrap"><span>New School BJJ Brixton · 130 Brixton Hill, London SW2 1RS</span><a href="https://www.instagram.com/newschoolbjj_brixton/" target="_blank" rel="noopener">@newschoolbjj_brixton</a><span class="co-legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><button type="button" data-cookie-settings>Cookie settings</button></span></div></footer>
+<footer class="co-foot"><div class="wrap"><span>New School BJJ Brixton · 130 Brixton Hill, London SW2 1RS</span><span class="co-legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><button type="button" data-cookie-settings>Cookie settings</button></span></div></footer>
 
 <script>
 (function(){
@@ -142,6 +156,7 @@
   var p=new URLSearchParams(location.search);
   document.body.classList.add(p.get('gi')==='1'?'has-gi':'no-gi');
   document.querySelector('.wl-name').textContent=', Sam';
+  document.querySelector('.wl-fname').textContent='Sam';
   document.getElementById('rc-email').textContent='sam@example.test';
   document.getElementById('welcome-summary').textContent='Preview only. No payment or class booking has been made.';
 })();
@@ -167,7 +182,7 @@
     .then(function(s){
       if(!window.NSBJJCheckout||!NSBJJCheckout.paidSession(s,sid)){unverified();return;}
       heading.innerHTML=paidHeading;summary.innerHTML=paidSummary;
-      status.textContent='Sandbox test payment received · no real booking';receipt.hidden=false;
+      status.textContent='Payment received';receipt.hidden=false;
       document.querySelector('.rc-no').textContent='Order '+s.trial.transaction_id;
       document.getElementById('rc-total-label').textContent='Confirmed total';
       if(s.trial.created)document.getElementById('rc-date').textContent=new Date(s.trial.created*1000).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+' · ';
@@ -180,7 +195,7 @@
       }
       document.getElementById('rc-delivery').textContent='Paid by card · Receipt email: ';
       var b=document.body;b.classList.remove('has-gi','no-gi');b.classList.add(s.gi?'has-gi':'no-gi');
-      if(s.first_name)document.querySelector('.wl-name').textContent=', '+s.first_name.charAt(0).toUpperCase()+s.first_name.slice(1);
+      if(s.first_name){var fn=s.first_name.charAt(0).toUpperCase()+s.first_name.slice(1);document.querySelector('.wl-name').textContent=', '+fn;document.querySelector('.wl-fname').textContent=fn;}
       if(s.email)document.getElementById('rc-email').textContent=s.email;
       if(!window.nsbjjTrackPurchase)return;
       nsbjjTrackPurchase({value:s.trial.value,currency:'GBP',event_id:s.trial.event_id,transaction_id:s.trial.transaction_id});

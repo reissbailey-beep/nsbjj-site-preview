@@ -99,7 +99,8 @@
       t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
       fbq('init',CFG.META_PIXEL_ID); fbq('track','PageView');
     }
-    // Google tag (Google Ads, plus GA4 if an ID is set).
+    // Google tag (Google Ads, plus GA4 if an ID is set). Skipped on the Meta-only funnel sandbox.
+    if(CFG.META_ONLY||!CFG.GOOGLE_ADS_ID)return;
     var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id='+CFG.GOOGLE_ADS_ID;document.head.appendChild(g);
     window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){dataLayer.push(arguments);};
     gtag('js',new Date()); gtag('config',CFG.GOOGLE_ADS_ID); if(CFG.GA4_ID)gtag('config',CFG.GA4_ID);
@@ -115,7 +116,7 @@
   window.nsbjjTrackPurchase=function(p){ // p = {value, currency:'GBP', event_id, transaction_id}
     var tid=p.transaction_id||p.session_id; if(!tid||!p.event_id)return;
     api.onAccept(function(){
-      if(!CFG.TRACKING_LIVE||window.NSBJJ_PREVIEW)return;
+      if(!CFG.TRACKING_LIVE||(window.NSBJJ_PREVIEW&&!CFG.META_ONLY))return;
       if(sentPurchases[tid])return;sentPurchases[tid]=true;
       var k='nsbjj-conv-'+tid;
       try{if(localStorage.getItem(k))return;localStorage.setItem(k,'1');}catch(e){}
@@ -131,7 +132,7 @@
   window.nsbjjTrackEvent=function(name,params,eventID){
     if(!name||!eventID)return;
     api.onAccept(function(){
-      if(!CFG.TRACKING_LIVE||window.NSBJJ_PREVIEW)return;
+      if(!CFG.TRACKING_LIVE||(window.NSBJJ_PREVIEW&&!CFG.META_ONLY))return;
       if(sentEvents[name+':'+eventID])return;sentEvents[name+':'+eventID]=true;
       if(window.fbq)fbq('track',name,params||{},{eventID:eventID});
     });
